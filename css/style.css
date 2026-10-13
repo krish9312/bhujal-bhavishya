@@ -45,6 +45,44 @@ h1, h2, p { margin-top: 0; }
 .form-error { margin: 12px 0 0; color: #872e2c; font-size: 12px; }
 .data-error { margin: 0 0 16px; padding: 13px 15px; border: 1px solid #e3b9b2; border-radius: 6px; background: #fff3f0; }
 .data-error[hidden] { display: none; }
+.data-summary, .what-it-takes-panel, .how-it-works-panel { min-width: 0; margin-bottom: 18px; padding: 20px 24px; border: 1px solid var(--line); border-radius: 7px; background: var(--white); box-shadow: 0 8px 22px rgba(28, 75, 78, .045); }
+.data-summary { border-left: 4px solid var(--green); }
+.data-summary h2, .what-it-takes-panel h2, .well-comparison-panel h2, .how-it-works-panel h2 { margin: 0; font-size: 20px; line-height: 1.25; font-weight: 600; }
+.data-summary h2 { margin-bottom: 8px; }
+.data-summary p { margin: 4px 0; color: #395d62; font-size: 13px; line-height: 1.5; }
+.data-summary small { display: block; margin-top: 8px; color: var(--muted); font-size: 11px; }
+.data-summary p[hidden], .data-summary small[hidden] { display: none; }
+.data-summary:empty { display: none; }
+.what-it-takes-panel { border-top: 4px solid var(--orange); }
+.target-stage-field { width: min(220px, 100%); margin-bottom: 12px; }
+.target-stage-field select { min-height: 38px; padding: 6px 9px; border: 1px solid var(--line); border-radius: 5px; color: var(--ink); background: var(--white); }
+.within-target-note { margin: 0 0 10px; color: var(--green-dark); font-size: 13px; }
+.within-target-note[hidden] { display: none; }
+.what-it-takes-results { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.what-it-takes-results article { display: grid; gap: 5px; min-width: 0; padding: 13px 15px; border: 1px solid var(--line); border-radius: 5px; background: #f8fbfa; }
+.what-it-takes-results article[hidden] { display: none; }
+.what-it-takes-results h3 { margin: 0; color: var(--muted); font-size: 12px; font-weight: 500; }
+.what-it-takes-results strong { color: var(--ink); font-size: 16px; overflow-wrap: anywhere; }
+.what-it-takes-results small { color: var(--muted); font-size: 11px; }
+.calculator-note { margin: 10px 0 0; color: var(--muted); font-size: 11px; line-height: 1.5; }
+.well-comparison-panel { margin-bottom: 18px; padding: 21px 22px; }
+.well-comparison-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 5px; }
+.well-comparison-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.well-comparison-table th, .well-comparison-table td { padding: 8px 10px; border-bottom: 1px solid #e5eeee; text-align: left; white-space: nowrap; }
+.well-comparison-table th { color: #31585d; background: #eef6f5; font-size: 11px; }
+.well-comparison-table tbody tr { cursor: pointer; }
+.well-comparison-table tbody tr:hover { background: #f1f8f7; }
+.well-comparison-table tbody tr:last-child td { border-bottom: 0; }
+.well-comparison-table tbody tr.selected { background: #e6f3f0; }
+.well-comparison-table tbody tr.deepening-row { box-shadow: inset 3px 0 var(--orange); }
+.well-comparison-table .weak-fit { display: inline-block; margin-left: 5px; color: #79530a; font-size: 10px; }
+.well-comparison-error { margin: 0 0 10px; color: #872e2c; font-size: 12px; }
+.well-comparison-error[hidden] { display: none; }
+.how-it-works-panel { border-left: 4px solid #4d97a1; }
+.how-it-works-list, .how-limitations ul { display: grid; gap: 8px; margin: 0; padding-left: 22px; color: #395d62; font-size: 13px; line-height: 1.5; }
+.how-limitations { margin-top: 16px; padding: 13px 15px; border-left: 3px solid #4d97a1; background: #f4f9f8; }
+.how-limitations h3 { margin: 0 0 8px; font-size: 14px; font-weight: 600; }
+.how-limitations ul { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 24px; }
 
 .district-dashboard, .scenario-panel, .chart-panel, .table-panel, .read-care-panel { min-width: 0; border: 1px solid var(--line); border-radius: 7px; background: var(--white); box-shadow: 0 8px 22px rgba(28, 75, 78, .045); }
 .well-panel { min-width: 0; margin-bottom: 18px; padding: 21px 24px 19px; border: 1px solid var(--line); border-radius: 7px; border-top: 4px solid var(--teal); background: var(--white); box-shadow: 0 8px 22px rgba(28, 75, 78, .045); }
@@ -150,6 +188,8 @@ h1, h2, p { margin-top: 0; }
 html[lang="gu"] { font-family: "Noto Sans Gujarati", sans-serif; }
 html[lang="gu"] *, html[lang="gu"] *::before, html[lang="gu"] *::after { font-weight: 400 !important; letter-spacing: 0 !important; }
 html[lang="gu"] .brand-copy strong { font-weight: 400 !important; }
+html[lang="hi"] { font-family: "Noto Sans Devanagari", sans-serif; }
+html[lang="hi"] *, html[lang="hi"] *::before, html[lang="hi"] *::after { font-weight: 400 !important; letter-spacing: 0 !important; }
 
 @media (max-width: 960px) {
   .dashboard-grid { grid-template-columns: 1fr; }
@@ -164,6 +204,8 @@ html[lang="gu"] .brand-copy strong { font-weight: 400 !important; }
   .dashboard-intro h1 { font-size: 27px; }
   .district-picker { width: 100%; }
   .district-dashboard, .scenario-panel, .chart-panel, .table-panel, .read-care-panel, .well-panel { padding: 17px 15px; }
+  .data-summary, .what-it-takes-panel, .how-it-works-panel, .well-comparison-panel { padding: 17px 15px; }
+  .what-it-takes-results, .how-limitations ul { grid-template-columns: 1fr; }
   .well-info { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .well-controls { grid-template-columns: 1fr; }
   .well-results { grid-template-columns: repeat(2, minmax(0, 1fr)); }

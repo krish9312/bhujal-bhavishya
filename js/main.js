@@ -1,4 +1,4 @@
-import { breakSeriesGaps, classifyStage, criticalYearStatusKey, linearRegression, predictYearForDepth, stageOfExtraction, trendMessageKey, yearsToThreshold } from "./model.js";
+import { breakSeriesGaps, calculateExtraRechargeNeeded, calculateHeadroom, calculateReductionNeeded, classifyStage, criticalYearStatusKey, linearRegression, predictYearForDepth, stageOfExtraction, trendMessageKey, yearsToThreshold } from "./model.js";
 import { getDistricts, getWells, getWellSeries } from "./dataSource.js";
 import { translate } from "./i18n.js";
 
@@ -6,13 +6,15 @@ const languageSelect = document.querySelector("#language-select");
 const districtSelect = document.querySelector("#district-select");
 const growthSlider = document.querySelector("#growth-slider");
 const dataError = document.querySelector("#data-error");
-let language = readStorage("language") === "gu" ? "gu" : "en";
+let language = ["en", "gu", "hi"].includes(readStorage("language")) ? readStorage("language") : "en";
 let districts = [];
 let wells = [];
 let wellsError = null;
 let selectedDistrict = null;
 let selectedWell = null;
 let wellSeries = [];
+let wellTrendRows = [];
+let wellTrendError = false;
 let wellChart;
 let wellRequestId = 0;
 let chart;
@@ -36,7 +38,7 @@ function writeStorage(key, value) {
 }
 
 const text = (key) => translate(language, key);
-const locale = () => language === "gu" ? "gu-IN" : "en-IN";
+const locale = () => ({ gu: "gu-IN", hi: "hi-IN" })[language] ?? "en-IN";
 
 function formatNumber(value, digits = 2, useGrouping = false) {
   if (value === null || value === undefined || !Number.isFinite(Number(value))) return text("noData");
@@ -44,7 +46,22 @@ function formatNumber(value, digits = 2, useGrouping = false) {
 }
 
 function districtName(district) {
-  return language === "gu" ? district.name_gu : district.district;
+  if (language === "gu") return district.name_gu;
+  if (language === "hi") {
+    const key = ({
+      Porbandar: "districtPorbandar",
+      Rajkot: "districtRajkot",
+      "Rann and Kutch": "districtRannAndKutch",
+      Sabarkantha: "districtSabarkantha",
+      Surat: "districtSurat",
+      Surendranagar: "districtSurendranagar",
+      Tapi: "districtTapi",
+      Vadodara: "districtVadodara",
+      Valsad: "districtValsad"
+    })[district.district];
+    return key ? text(key) : district.district;
+  }
+  return district.district;
 }
 
 function stageFor(district) {
@@ -60,6 +77,172 @@ function formatWellNumber(value, digits = 2) {
   if (value === null || value === undefined || value === "") return text("notAvailable");
   const number = Number(value);
   return Number.isFinite(number) ? formatNumber(number, digits) : text("notAvailable");
+}
+
+function renderWhatItWouldTake() {
+  const target = Number(document.querySelector("#target-stage").value);
+  const withinNote = document.querySelector("#within-target-note");
+  const reductionCard = document.querySelector("#reduction-card");
+  const rechargeCard = document.querySelector("#recharge-card");
+  const headroomCard = document.querySelector("#headroom-card");
+  if (!selectedDistrict) {
+    withinNote.hidden = true;
+    reductionCard.hidden = false;
+    rechargeCard.hidden = false;
+    headroomCard.hidden = true;
+    document.querySelector("#reduction-needed").textContent = text("noData");
+    document.querySelector("#reduction-percent").textContent = "";
+    document.querySelector("#extra-recharge-needed").textContent = text("noData");
+    document.querySelector("#recharge-percent").textContent = "";
+    return;
+  }
+  const { extraction, extractableResource } = selectedDistrict;
+  const reduction = calculateReductionNeeded(extraction, extractableResource, target);
+  const recharge = calculateExtraRechargeNeeded(extraction, extractableResource, target);
+  const stage = stageFor(selectedDistrict);
+  const withinTarget = stage !== null && stage <= target;
+  withinNote.hidden = !withinTarget;
+  reductionCard.hidden = withinTarget;
+  rechargeCard.hidden = withinTarget;
+  headroomCard.hidden = !withinTarget;
+  if (withinTarget) {
+    const headroom = calculateHeadroom(extraction, extractableResource, target);
+    if (headroom === null) {
+      document.querySelector("#headroom-value").textContent = text("noData");
+      document.querySelector("#headroom-percent").textContent = "";
+    } else {
+      const percent = extraction > 0 ? (headroom / extraction) * 100 : 0;
+      document.querySelector("#headroom-value").textContent = text("calculatorAmount")
+        .replace("{ham}", formatNumber(headroom, 1, true))
+        .replace("{million}", formatNumber(headroom / 100, 2, true));
+      document.querySelector("#headroom-percent").textContent = text("calculatorReductionPercent")
+        .replace("{percent}", formatNumber(percent, 1));
+    }
+    return;
+  }
+  if (reduction === null || recharge === null) {
+    document.querySelector("#reduction-needed").textContent = text("noData");
+    document.querySelector("#reduction-percent").textContent = "";
+    document.querySelector("#extra-recharge-needed").textContent = text("noData");
+    document.querySelector("#recharge-percent").textContent = "";
+    return;
+  }
+  const reductionPercent = extraction > 0 ? (reduction / extraction) * 100 : 0;
+  const rechargePercent = extractableResource > 0 ? (recharge / extractableResource) * 100 : 0;
+  const amount = (value) => text("calculatorAmount")
+    .replace("{ham}", formatNumber(value, 1, true))
+    .replace("{million}", formatNumber(value / 100, 2, true));
+  document.querySelector("#reduction-needed").textContent = amount(reduction);
+  document.querySelector("#reduction-percent").textContent = text("calculatorReductionPercent").replace("{percent}", formatNumber(reductionPercent, 1));
+  document.querySelector("#extra-recharge-needed").textContent = amount(recharge);
+  document.querySelector("#recharge-percent").textContent = text("calculatorRechargePercent").replace("{percent}", formatNumber(rechargePercent, 1));
+}
+
+function renderDataSummary() {
+  if (!districts.length) return;
+  const validDistricts = districts
+    .map((district) => ({ district, stage: stageFor(district), category: classifyStage(stageFor(district)) }))
+    .filter(({ stage }) => stage !== null);
+  const categoryNames = ["Safe", "Semi-critical", "Critical", "Over-exploited"];
+  const categoryCounts = categoryNames.map((category) => {
+    const count = validDistricts.filter((entry) => entry.category === category).length;
+    return text("summaryCategoryCount")
+      .replace("{category}", text(categoryKey(category)))
+      .replace("{count}", formatNumber(count, 0));
+  });
+  document.querySelector("#summary-districts").textContent = text("summaryDistrictCoverage")
+    .replace("{count}", formatNumber(validDistricts.length, 0))
+    .replace("{categories}", categoryCounts.join(", "));
+  const highest = validDistricts.reduce((best, entry) => !best || entry.stage > best.stage ? entry : best, null);
+  document.querySelector("#summary-highest").textContent = highest
+    ? text("summaryHighestStage").replace("{district}", districtName(highest.district)).replace("{stage}", formatNumber(highest.stage, 1))
+    : "";
+
+  const summaryDeepening = document.querySelector("#summary-deepening");
+  const summaryNoClearTrend = document.querySelector("#summary-no-clear-trend");
+  const trendData = wellTrendRows.filter(({ regression }) => regression);
+  if (wellTrendError) {
+    summaryDeepening.textContent = text("summaryUnavailable");
+    summaryNoClearTrend.textContent = "";
+  } else if (!trendData.length) {
+    summaryDeepening.textContent = wells.length ? text("summaryUnavailable") : text("summaryNoWells");
+    summaryNoClearTrend.textContent = "";
+  } else {
+    const deepening = trendData.filter(({ regression }) => regression.slope > 0.5 && regression.r2 >= 0.3);
+    const noClearTrend = trendData.filter(({ regression }) => !(Math.abs(regression.slope) > 0.1 && regression.r2 >= 0.3));
+    const wellList = deepening.map(({ well }) => {
+      const district = districts.find((entry) => entry.district === well.district);
+      return `${district ? districtName(district) : well.district} (${well.label})`;
+    });
+    summaryDeepening.textContent = text("summaryDeepening")
+      .replace("{count}", formatNumber(deepening.length, 0))
+      .replace("{total}", formatNumber(trendData.length, 0))
+      .replace("{wells}", wellList.join(", ") || text("summaryNone"));
+    const noClearKey = noClearTrend.length > trendData.length / 2 ? "summaryNoClearTrendMost" : "summaryNoClearTrend";
+    summaryNoClearTrend.textContent = text(noClearKey)
+      .replace("{count}", formatNumber(noClearTrend.length, 0))
+      .replace("{total}", formatNumber(trendData.length, 0));
+  }
+  const assessmentYears = [...new Set(districts.map(({ assessmentYear }) => assessmentYear).filter(Boolean))].join(", ");
+  document.querySelector("#summary-source-note").textContent = text("summarySourceNote")
+    .replace("{years}", assessmentYears)
+    .replace("{count}", formatNumber(wells.length, 0));
+}
+
+async function loadWellTrendRows() {
+  if (wellsError) {
+    wellTrendRows = [];
+    wellTrendError = true;
+    return;
+  }
+  wellTrendError = false;
+  wellTrendRows = await Promise.all(wells.map(async (well) => {
+    const series = await getWellSeries(well.station_code);
+    const startYear = Math.max(2012, series[0]?.year ?? Number(well.first_year));
+    return { well, series, startYear, regression: linearRegression(series, startYear) };
+  }));
+}
+
+function renderWellComparison() {
+  const body = document.querySelector("#well-comparison-rows");
+  const error = document.querySelector("#well-comparison-error");
+  error.textContent = wellTrendError ? text("wellComparisonUnavailable") : "";
+  error.hidden = !wellTrendError;
+  body.replaceChildren(...wellTrendRows.map(({ well, series, regression }) => {
+    const row = document.createElement("tr");
+    row.tabIndex = 0;
+    row.setAttribute("aria-selected", String(selectedDistrict?.district === well.district));
+    if (selectedDistrict?.district === well.district) row.classList.add("selected");
+    if (regression && regression.slope > 0.5 && regression.r2 >= 0.3) row.classList.add("deepening-row");
+    const trendKey = !regression ? "noTrendData"
+      : regression.r2 < 0.3 ? "noClearTrendLabel"
+        : regression.slope < -0.1 ? "recoveringTrendLabel"
+        : regression.slope <= 0.1 ? "almostFlatTrendLabel" : "deepeningTrendLabel";
+    const district = districts.find((entry) => entry.district === well.district);
+    const cells = [
+      district ? districtName(district) : well.district,
+      well.label,
+      series.length ? `${series[0].year}–${series.at(-1).year}` : text("notAvailable"),
+      regression ? `${Math.abs(regression.slope) < 0.005 ? "" : regression.slope > 0 ? "+" : ""}${formatNumber(Math.abs(regression.slope) < 0.005 ? 0 : regression.slope, 2)}` : text("noData"),
+      regression ? formatNumber(regression.r2, 2) : text("noData")
+    ];
+    for (const value of cells) {
+      const cell = document.createElement("td");
+      cell.textContent = value;
+      row.append(cell);
+    }
+    const messageCell = document.createElement("td");
+    messageCell.textContent = text(trendKey);
+    row.append(messageCell);
+    row.addEventListener("click", () => selectDistrict(well.district));
+    row.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        selectDistrict(well.district);
+      }
+    });
+    return row;
+  }));
 }
 
 function renderWellLimitations(well) {
@@ -118,10 +301,11 @@ function renderWellAnalysis() {
   slopeValue.textContent = regression.slope === null ? text("noData") : `${regression.slope > 0 ? "+" : ""}${formatNumber(regression.slope, 2)} ${text("meterPerYear")}`;
   r2Value.textContent = regression.r2 === null ? text("noData") : formatNumber(regression.r2, 2);
   const criticalYearDetail = document.querySelector("#critical-year-detail");
-  criticalYearValue.textContent = criticalYearStatusKey(regression.slope, false)
-    ? text(criticalYearStatusKey(regression.slope, false))
+  criticalYearValue.textContent = criticalYearStatusKey(regression.slope, regression.r2, false)
+    ? text(criticalYearStatusKey(regression.slope, regression.r2, false))
     : "—";
   criticalYearDetail.textContent = "";
+  criticalYearDetail.hidden = true;
   document.querySelector("#critical-depth").placeholder = text("criticalDepthPlaceholder");
   document.querySelector("#well-trend-range").textContent = usedPoints.length
     ? text("trendRange").replace("{start}", String(usedPoints[0].year)).replace("{end}", String(usedPoints.at(-1).year)).replace("{n}", String(regression.n))
@@ -139,12 +323,17 @@ function renderWellAnalysis() {
     const firstObservedYear = wellSeries.find(({ depth }) => depth > criticalDepth)?.year;
     if (firstObservedYear !== undefined) {
       criticalYearDetail.textContent = text("firstObservedBeyondDepth").replace("{year}", String(firstObservedYear));
+      criticalYearDetail.hidden = false;
     }
   } else {
-    const statusKey = criticalYearStatusKey(regression.slope, false);
+    const statusKey = criticalYearStatusKey(regression.slope, regression.r2, false);
     criticalYearValue.textContent = statusKey ? text(statusKey) : "—";
+    if (statusKey === "noReliableTrend") {
+      criticalYearDetail.textContent = text("weakFitYearNote");
+      criticalYearDetail.hidden = false;
+    }
   }
-  if (hasCriticalDepth && enoughData && regression.slope > 0 && !alreadyReached) {
+  if (hasCriticalDepth && enoughData && regression.slope > 0.1 && regression.r2 >= 0.3 && !alreadyReached) {
     const predictedYear = predictYearForDepth(regression.slope, regression.intercept, criticalDepth);
     if (predictedYear !== null) {
       criticalYearValue.textContent = text("aroundYear").replace("{year}", String(Math.round(predictedYear)));
@@ -198,11 +387,11 @@ function renderWellChart(regression, startYear, criticalDepth, hasCriticalDepth)
 
   let maxYear = latestObservedYear;
   if (regression.n >= 5 && regression.slope !== null && selectedPoints.length) {
-    const crossingYear = hasCriticalDepth && regression.slope > 0
+    const crossingYear = hasCriticalDepth && regression.slope > 0.1 && regression.r2 >= 0.3
       ? predictYearForDepth(regression.slope, regression.intercept, criticalDepth)
       : null;
     const endYear = crossingYear !== null && crossingYear > latestUsedYear
-      ? Math.min(crossingYear, latestUsedYear + 40)
+      ? Math.min(Math.ceil(crossingYear), latestUsedYear + 40)
       : latestUsedYear;
     maxYear = Math.max(maxYear, endYear);
     data.push({
@@ -231,8 +420,8 @@ function renderWellChart(regression, startYear, criticalDepth, hasCriticalDepth)
     });
   }
 
-  const gujarati = language === "gu";
-  const family = gujarati ? "Noto Sans Gujarati" : "DM Sans";
+  const nativeScript = language !== "en";
+  const family = language === "gu" ? "Noto Sans Gujarati" : language === "hi" ? "Noto Sans Devanagari" : "DM Sans";
   wellChart = new Chart(canvas, {
     type: "line",
     data: { datasets: data },
@@ -243,7 +432,7 @@ function renderWellChart(regression, startYear, criticalDepth, hasCriticalDepth)
         legend: { labels: { font: { family, weight: "normal" } } },
         tooltip: {
           callbacks: {
-            title: (items) => items.length ? String(items[0].raw.x) : "",
+            title: (items) => items.length ? String(Math.round(Number(items[0].raw.x))) : "",
             label: (context) => {
               const point = context.raw;
               const depth = `${formatNumber(point.y, 2)} ${text("meterAbbreviation")}`;
@@ -261,12 +450,12 @@ function renderWellChart(regression, startYear, criticalDepth, hasCriticalDepth)
           type: "linear",
           min: wellSeries[0]?.year,
           max: maxYear,
-          title: { display: true, text: text("wellYearAxis"), font: { family, weight: gujarati ? "normal" : "600" } },
-          ticks: { precision: 0, callback: (value) => String(value), font: { family, weight: "normal" } }
+          title: { display: true, text: text("wellYearAxis"), font: { family, weight: nativeScript ? "normal" : "600" } },
+          ticks: { precision: 0, callback: (value) => String(Math.round(Number(value))), font: { family, weight: "normal" } }
         },
         y: {
           reverse: true,
-          title: { display: true, text: text("wellDepthAxis"), font: { family, weight: gujarati ? "normal" : "600" } },
+          title: { display: true, text: text("wellDepthAxis"), font: { family, weight: nativeScript ? "normal" : "600" } },
           ticks: { font: { family, weight: "normal" } }
         }
       }
@@ -312,8 +501,8 @@ async function loadWellForDistrict(district) {
     wellSeries = series;
     document.querySelector("#well-label").textContent = well.label;
     document.querySelector("#well-station-code").textContent = well.station_code;
-    document.querySelector("#well-verified").hidden = !well.verified;
-    document.querySelector("#well-unverified").hidden = Boolean(well.verified);
+    document.querySelector("#well-verified").hidden = well.verified !== true;
+    document.querySelector("#well-unverified").hidden = well.verified !== false;
     document.querySelector("#well-range").textContent = `${well.first_year}–${well.last_year}`;
 
     const criticalInput = document.querySelector("#critical-depth");
@@ -389,10 +578,15 @@ function applyTranslations() {
   });
   languageSelect.options[0].textContent = text("englishLanguage");
   languageSelect.options[1].textContent = text("gujaratiLanguage");
+  languageSelect.options[2].textContent = text("hindiLanguage");
+  document.querySelector(".brand-gujarati").setAttribute("lang", language);
   languageSelect.setAttribute("aria-label", text("languageLabel"));
   if (districts.length) populateDistrictSelect();
   renderDistrictTable();
   renderChart();
+  renderDataSummary();
+  renderWhatItWouldTake();
+  renderWellComparison();
   if (selectedDistrict) {
     renderSelectedDistrict();
     renderWellAnalysis();
@@ -417,6 +611,7 @@ function renderSelectedDistrict() {
   document.querySelector("#no-data-note").hidden = !hasMissingValue;
   document.querySelector("#source-line").textContent = text("sourceLine").replace("{year}", district.assessmentYear);
   renderScenario();
+  renderWhatItWouldTake();
 }
 
 function renderScenario() {
@@ -576,8 +771,8 @@ function renderChart() {
       indexAxis: "y", responsive: true, maintainAspectRatio: false,
       plugins: { legend: { display: false }, tooltip: { callbacks: { label: (context) => `${formatNumber(context.parsed.x, 1)}%` } } },
       scales: {
-        x: { min: 0, max: maxStage, grid: { color: "#e6eeee" }, title: { display: true, text: text("stageAxisTitle"), color: "#385c61", font: { family: language === "gu" ? "Noto Sans Gujarati" : "DM Sans", size: 12, weight: language === "gu" ? "normal" : "600" } }, ticks: { color: "#557074", callback: (value) => `${formatNumber(value, 0)}%` } },
-        y: { grid: { display: false }, ticks: { color: "#284d53", font: { family: language === "gu" ? "Noto Sans Gujarati" : "DM Sans", size: 12 } } }
+        x: { min: 0, max: maxStage, grid: { color: "#e6eeee" }, title: { display: true, text: text("stageAxisTitle"), color: "#385c61", font: { family: language === "gu" ? "Noto Sans Gujarati" : language === "hi" ? "Noto Sans Devanagari" : "DM Sans", size: 12, weight: language === "en" ? "600" : "normal" } }, ticks: { color: "#557074", callback: (value) => `${formatNumber(value, 0)}%`, font: { family: language === "gu" ? "Noto Sans Gujarati" : language === "hi" ? "Noto Sans Devanagari" : "DM Sans" } } },
+        y: { grid: { display: false }, ticks: { color: "#284d53", font: { family: language === "gu" ? "Noto Sans Gujarati" : language === "hi" ? "Noto Sans Devanagari" : "DM Sans", size: 12 } } }
       },
       onClick: (_event, elements) => {
         if (elements.length) selectDistrict(ranked[elements[0].index].district.district);
@@ -624,6 +819,7 @@ districtSelect.addEventListener("change", () => selectDistrict(districtSelect.va
 growthSlider.addEventListener("input", renderScenario);
 document.querySelector("#critical-depth").addEventListener("input", renderWellAnalysis);
 document.querySelector("#trend-start-year").addEventListener("change", renderWellAnalysis);
+document.querySelector("#target-stage").addEventListener("change", renderWhatItWouldTake);
 languageSelect.addEventListener("change", () => {
   language = languageSelect.value;
   writeStorage("language", language);
@@ -643,9 +839,18 @@ async function startDashboard() {
     const savedDistrict = readStorage("district");
     selectedDistrict = districts.find((district) => district.district === savedDistrict) ?? null;
     renderDistricts();
+    try {
+      await loadWellTrendRows();
+    } catch (error) {
+      console.error(error);
+      wellTrendError = true;
+    }
+    renderDataSummary();
+    renderWellComparison();
     dataError.hidden = true;
   } catch (error) {
     console.error(error);
+    dataError.dataset.i18n = "districtLoadError";
     dataError.textContent = text("districtLoadError");
     dataError.hidden = false;
     document.querySelector("#district-dashboard").hidden = true;

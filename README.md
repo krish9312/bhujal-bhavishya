@@ -4,9 +4,22 @@ A district-level groundwater dashboard for a school science exhibition. It prese
 
 ## Run it
 
-Install the VS Code **Live Server** extension, open the project in VS Code, and choose **Open with Live Server** on `index.html`. The dashboard fetches its data files in the browser, so it must be run through Live Server over HTTP; fetching files does not work on `file://`. Chart.js and Noto Sans Gujarati are loaded from CDNs and need an internet connection. No backend, package installation, or build step is required.
+Install the VS Code **Live Server** extension, open the project in VS Code, and choose **Open with Live Server** on `index.html`. The dashboard fetches its data files in the browser, so it must be run through Live Server over HTTP; fetching files does not work on `file://`. Chart.js and the Noto Sans Gujarati and Devanagari fonts are loaded from CDNs and need an internet connection. The language selector supports English, Gujarati, and Hindi. No backend, package installation, or build step is required.
 
 Open `tests/model.test.html` through the same Live Server address to run the browser-based formula checks.
+
+## Dashboard summaries and planning tools
+
+The “What the data says” summary and well-comparison table are calculated from `data/districts.json`, `data/wells_meta.json`, and `data/wells_annual.csv`. Well trend summaries use the observations from 2012 onward, or the station's first available year when that is later. The table marks strong deepening trends when the slope is above 0.5 metres per year and R2 is at least 0.3.
+
+The “What it would take” calculator shows two separate ways to reach the selected stage:
+
+- Extraction reduction = max(0, current extraction − (target stage / 100) × extractable resource).
+- Additional extractable resource = max(0, current extraction / (target stage / 100) − current extractable resource).
+
+The calculator expresses both values in hectare-metres and million cubic metres. These are simplified comparisons, not project designs; actual recharge and extraction projects depend on local conditions.
+
+The “How it works” section explains the assessment, monitoring-well trends, and limitations. A monitoring well represents only its station, and the scenario and critical depth are not official forecasts or thresholds.
 
 ## Data
 

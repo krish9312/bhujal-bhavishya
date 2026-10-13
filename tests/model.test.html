@@ -14,7 +14,7 @@
   <p id="summary">Running…</p>
   <ol id="test-results"></ol>
   <script type="module">
-    import { breakSeriesGaps, classifyStage, criticalYearStatusKey, linearRegression, predictYearForDepth, stageOfExtraction, trendMessageKey, yearsToThreshold } from "../js/model.js";
+    import { breakSeriesGaps, calculateExtraRechargeNeeded, calculateHeadroom, calculateReductionNeeded, classifyStage, criticalYearStatusKey, linearRegression, predictYearForDepth, stageOfExtraction, trendMessageKey, yearsToThreshold } from "../js/model.js";
     import { translations } from "../js/i18n.js";
     import { getDistricts } from "../js/dataSource.js";
     const results = document.querySelector("#test-results");
@@ -25,6 +25,7 @@
     const districts = await getDistricts();
     const porbandar = districts.find(({ district }) => district === "Porbandar");
     const sabarkantha = districts.find(({ district }) => district === "Sabarkantha");
+    const vadodara = districts.find(({ district }) => district === "Vadodara");
     const porbandarStage = stageOfExtraction(porbandar.extraction, porbandar.extractableResource);
     const sabarkanthaStage = stageOfExtraction(sabarkantha.extraction, sabarkantha.extractableResource);
     check("Nine assessment districts load", districts.length === 9);
@@ -44,6 +45,12 @@
     check("Porbandar reaches 70% in about 10.6 years at 2% growth", near(yearsToThreshold(porbandar.extraction, porbandar.extractableResource, 70, 2), 10.6, 0.1));
     check("Zero growth has no threshold time", yearsToThreshold(porbandar.extraction, porbandar.extractableResource, 70, 0) === null);
     check("Sabarkantha is already above 70%", yearsToThreshold(sabarkantha.extraction, sabarkantha.extractableResource, 70, 2) === 0);
+    check("Sabarkantha needs about 1557.9 ham less extraction to reach 70%", near(calculateReductionNeeded(54868.46, 76157.96, 70), 1557.9, 0.02));
+    check("Sabarkantha needs about 2225.6 ham more extractable resource to reach 70%", near(calculateExtraRechargeNeeded(54868.46, 76157.96, 70), 2225.6, 0.06));
+    check("Vadodara has about 3196.8 ham of headroom at 70%", near(calculateHeadroom(vadodara.extraction, vadodara.extractableResource, 70), 3196.8, 0.02));
+    check("Porbandar needs no change to reach 70%", calculateReductionNeeded(porbandar.extraction, porbandar.extractableResource, 70) === 0 && calculateExtraRechargeNeeded(porbandar.extraction, porbandar.extractableResource, 70) === 0);
+    check("What-it-would-take functions return null for missing or invalid inputs", calculateReductionNeeded(null, 1, 70) === null && calculateReductionNeeded(1, null, 70) === null && calculateExtraRechargeNeeded(undefined, 1, 70) === null && calculateExtraRechargeNeeded(1, 1, null) === null);
+    check("Headroom returns null for missing inputs", calculateHeadroom(null, 1, 70) === null && calculateHeadroom(1, null, 70) === null);
     const rann = districts.find(({ district }) => district === "Rann and Kutch");
     check("Rann and Kutch assessment values are null", rann.rainfall_mm === null && rann.extractableResource === null && rann.extraction === null);
     const trendPoints = Array.from({ length: 10 }, (_, index) => {
@@ -62,9 +69,16 @@
     check("Gap-breaking helper inserts a null point across gaps over three years", brokenSeries.some(({ year, depth }) => year === 1996 && depth === null));
     check("Gap-breaking helper does not split gaps of three years or less", !brokenSeries.some(({ year, depth }) => year === 2013 && depth === null));
     check("Negative slope uses the recovering trend message key", trendMessageKey(-0.59) === "recoveringTrend");
-    check("Already-reached critical depth uses its own predicted-year wording key", criticalYearStatusKey(1.69, true) === "alreadyReachedYear");
-    check("Recovering and flat trends keep the not-applicable wording key", criticalYearStatusKey(-0.59, false) === "notApplicable" && criticalYearStatusKey(0.05, false) === "notApplicable");
-    check("New critical-year and guidance wording is translated", translations.en.alreadyReachedYear === "Already reached" && translations.gu.alreadyReachedYear && translations.en.firstObservedBeyondDepth.includes("{year}") && translations.gu.firstObservedBeyondDepth.includes("{year}") && translations.en.raiseCriticalDepthHint && translations.gu.raiseCriticalDepthHint);
+    check("Already-reached critical depth uses its own predicted-year wording key", criticalYearStatusKey(1.69, 0.51, true) === "alreadyReachedYear");
+    check("Recovering trends and adequately fit flat trends keep the not-applicable wording key", criticalYearStatusKey(-0.59, 0.02, false) === "notApplicable" && criticalYearStatusKey(0.05, 0.51, false) === "notApplicable");
+    check("Positive trend with a weak fit has no reliable critical-year key", criticalYearStatusKey(0.35, 0.02, false) === "noReliableTrend");
+    check("Non-negative flat slope with a weak fit has no reliable critical-year key", criticalYearStatusKey(0.05, 0.02, false) === "noReliableTrend");
+    check("Positive trend with an adequate fit can show a year", criticalYearStatusKey(1.69, 0.51, false) === null && near(predictYearForDepth(1.69, 10 - 1.69 * 2020, 10), 2020, 0.1));
+    check("New critical-year, headroom and guidance wording is translated", translations.en.alreadyReachedYear === "Already reached" && translations.gu.alreadyReachedYear && translations.en.noReliableTrend && translations.gu.noReliableTrend && translations.en.weakFitYearNote && translations.gu.weakFitYearNote && translations.en.headroomTitle && translations.gu.headroomTitle && translations.en.headroomDescription && translations.gu.headroomDescription && translations.en.firstObservedBeyondDepth.includes("{year}") && translations.gu.firstObservedBeyondDepth.includes("{year}") && translations.en.raiseCriticalDepthHint && translations.gu.raiseCriticalDepthHint);
+    check("New summary, calculator, comparison and explanation strings are translated", ["dataSummaryTitle", "summaryDistrictCoverage", "summaryHighestStage", "summaryDeepening", "summaryNoClearTrendMost", "whatItTakesTitle", "calculatorNote", "wellComparisonTitle", "deepeningTrendLabel", "howItWorksTitle", "howStageMeaning"].every((key) => translations.en[key] && translations.gu[key]));
+    check("Hindi has a translation for every English UI key", Object.keys(translations.en).every((key) => Boolean(translations.hi[key])));
+    check("English, Gujarati and Hindi include the Hindi language label", translations.en.hindiLanguage === "Hindi" && translations.gu.hindiLanguage === "હિન્દી" && translations.hi.hindiLanguage === "हिन्दी");
+    check("Hindi includes district names", translations.hi.districtPorbandar === "पोरबंदर" && translations.hi.districtRannAndKutch);
     const positiveTrendPrediction = predictYearForDepth(1.69, 10 - 1.69 * 2020, 10);
     check("Positive 1.69 slope with R2 0.51 can predict a critical year", 0.51 >= 0.3 && positiveTrendPrediction !== null && near(positiveTrendPrediction, 2020, 0.1));
 

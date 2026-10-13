@@ -27,6 +27,24 @@ export function yearsToThreshold(extraction, extractable, thresholdPct, growthPc
   return Number.isFinite(years) && years >= 0 ? years : null;
 }
 
+// Reduction needed = max(0, current extraction - target extraction at the selected stage).
+export function calculateReductionNeeded(extraction, extractable, targetStage) {
+  if (stageOfExtraction(extraction, extractable) === null || !isFiniteNumber(targetStage) || targetStage <= 0 || targetStage > 100) return null;
+  return Math.max(0, extraction - (targetStage / 100) * extractable);
+}
+
+// Extra recharge needed = max(0, current extraction / target fraction - current extractable resource).
+export function calculateExtraRechargeNeeded(extraction, extractable, targetStage) {
+  if (stageOfExtraction(extraction, extractable) === null || !isFiniteNumber(targetStage) || targetStage <= 0 || targetStage > 100) return null;
+  return Math.max(0, extraction / (targetStage / 100) - extractable);
+}
+
+// Headroom = target extraction at the selected stage - current extraction.
+export function calculateHeadroom(extraction, extractable, targetStage) {
+  if (stageOfExtraction(extraction, extractable) === null || !isFiniteNumber(targetStage) || targetStage <= 0 || targetStage > 100) return null;
+  return Math.max(0, (targetStage / 100) * extractable - extraction);
+}
+
 // Least-squares slope = sum((year - meanYear) * (depth - meanDepth)) / sum((year - meanYear)^2).
 // R2 = 1 - sum((depth - predictedDepth)^2) / sum((depth - meanDepth)^2).
 export function linearRegression(points, startYear) {
@@ -80,7 +98,12 @@ export function trendMessageKey(slope) {
   return null;
 }
 
-export function criticalYearStatusKey(slope, alreadyReached) {
+export function criticalYearStatusKey(slope, r2, alreadyReached) {
   if (alreadyReached) return "alreadyReachedYear";
-  return trendMessageKey(slope) ? "notApplicable" : null;
+  if (!isFiniteNumber(slope)) return null;
+  if (slope < -0.1) return "notApplicable";
+  if ((!isFiniteNumber(r2) || r2 < 0.3) && slope >= 0) return "noReliableTrend";
+  if (slope <= 0.1) return "notApplicable";
+  if (!isFiniteNumber(r2) || r2 < 0.3) return "noReliableTrend";
+  return null;
 }

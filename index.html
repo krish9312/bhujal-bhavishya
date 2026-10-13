@@ -8,7 +8,7 @@
   <title>Bhujal Bhavishya | District groundwater status</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Gujarati:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500&family=Noto+Sans+Gujarati:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.9/dist/chart.umd.min.js" integrity="sha384-b0GXujLkk9eYYSmcSfoyZbfyElGAQnDyY0skCHSG6w3JgTMFnz11ggrTAr7seu9f" crossorigin="anonymous"></script>
   <script type="module" src="js/main.js"></script>
@@ -24,12 +24,21 @@
         <select id="language-select" aria-label="Language">
           <option value="en">English</option>
           <option value="gu">ગુજરાતી</option>
+          <option value="hi">हिन्दी</option>
         </select>
       </label>
     </div>
   </header>
 
   <main id="top" class="page-shell dashboard-shell">
+    <section class="data-summary" aria-labelledby="data-summary-title">
+      <h2 id="data-summary-title" data-i18n="dataSummaryTitle">What the data says</h2>
+      <p id="summary-districts"></p>
+      <p id="summary-highest"></p>
+      <p id="summary-deepening"></p>
+      <p id="summary-no-clear-trend"></p>
+      <small id="summary-source-note"></small>
+    </section>
     <section class="dashboard-intro" aria-labelledby="page-title">
       <div>
         <p class="eyebrow" data-i18n="dashboardEyebrow">GROUNDWATER RESOURCE ASSESSMENT</p>
@@ -103,6 +112,18 @@
       <div class="scenario-table-wrap"><table class="scenario-table"><thead><tr><th scope="col" data-i18n="scenarioThreshold">Threshold</th><th scope="col" data-i18n="scenarioYears">Years</th><th scope="col" data-i18n="scenarioYear">Calendar year</th></tr></thead><tbody id="scenario-rows"></tbody></table></div>
     </section>
 
+    <section class="what-it-takes-panel" aria-labelledby="what-it-takes-title">
+      <div class="section-heading"><div><p class="section-kicker" data-i18n="calculatorKicker">OPTIONS AT A TARGET STAGE</p><h2 id="what-it-takes-title" data-i18n="whatItTakesTitle">What it would take</h2></div></div>
+      <label class="field target-stage-field" for="target-stage"><span data-i18n="targetStageLabel">Target stage</span><select id="target-stage"><option value="70">70%</option><option value="90">90%</option><option value="100">100%</option></select></label>
+      <p class="within-target-note" id="within-target-note" data-i18n="alreadyWithinLevel" hidden>Already within this level</p>
+      <div class="what-it-takes-results">
+        <article id="reduction-card"><h3 data-i18n="reductionNeededTitle">Reduce extraction</h3><strong id="reduction-needed">—</strong><small id="reduction-percent">—</small></article>
+        <article id="recharge-card"><h3 data-i18n="extraRechargeNeededTitle">Add extractable resource</h3><strong id="extra-recharge-needed">—</strong><small id="recharge-percent">—</small></article>
+        <article id="headroom-card" hidden><h3 data-i18n="headroomTitle">Headroom</h3><strong id="headroom-value">—</strong><small id="headroom-percent">—</small><small data-i18n="headroomDescription">Extraction could rise by this much before reaching the target level.</small></article>
+      </div>
+      <p class="calculator-note" data-i18n="calculatorNote">Two separate options, not to be added together. Real projects depend on local conditions.</p>
+    </section>
+
     <div class="dashboard-grid">
       <section class="chart-panel" aria-labelledby="chart-title">
         <div class="section-heading"><div><p class="section-kicker" data-i18n="rankedKicker">DISTRICT COMPARISON</p><h2 id="chart-title" data-i18n="rankedTitle">Extraction stage by district</h2></div></div>
@@ -121,9 +142,32 @@
       </section>
     </div>
 
+    <section class="table-panel well-comparison-panel" aria-labelledby="well-comparison-title">
+      <div class="section-heading"><div><p class="section-kicker" data-i18n="wellComparisonKicker">MONITORING WELL TRENDS</p><h2 id="well-comparison-title" data-i18n="wellComparisonTitle">Well comparison</h2></div></div>
+      <p class="well-comparison-error" id="well-comparison-error" role="status" hidden></p>
+      <div class="well-comparison-wrap"><table class="well-comparison-table">
+        <thead><tr><th scope="col" data-i18n="districtColumn">District</th><th scope="col" data-i18n="wellLabel">Well</th><th scope="col" data-i18n="dataRange">Data range</th><th scope="col" data-i18n="trendSlopeLabel">Slope (m/year)</th><th scope="col" data-i18n="trendR2Label">R2</th><th scope="col" data-i18n="trendMessageHeader">Trend</th></tr></thead>
+        <tbody id="well-comparison-rows"></tbody>
+      </table></div>
+    </section>
+
     <section class="read-care-panel" aria-labelledby="read-care-title">
       <div class="section-heading"><div><p class="section-kicker" data-i18n="careKicker">INTERPRET WITH CARE</p><h2 id="read-care-title" data-i18n="readCareTitle">Read with care</h2></div></div>
       <ul class="read-care-list"><li data-i18n="careDistrictAverages">These are district-level averages and can hide stressed talukas.</li><li data-i18n="careScenario">The scenario assumes extraction grows at a constant rate and extractable resource stays the same.</li><li data-i18n="careAssessment">This is a CGWB assessment for the stated year and may have changed since.</li><li data-i18n="careRainfall">Rainfall is the figure reported in the same assessment table.</li></ul>
+    </section>
+
+    <section class="how-it-works-panel" aria-labelledby="how-it-works-title">
+      <div class="section-heading"><div><p class="section-kicker" data-i18n="howItWorksKicker">ABOUT THE DATA AND CALCULATIONS</p><h2 id="how-it-works-title" data-i18n="howItWorksTitle">How it works</h2></div></div>
+      <ol class="how-it-works-list">
+        <li data-i18n="howDataSource"></li>
+        <li data-i18n="howStageMeaning"></li>
+        <li data-i18n="howWellGraph"></li>
+        <li data-i18n="howTrendMeaning"></li>
+        <li data-i18n="howScenarioMeaning"></li>
+      </ol>
+      <div class="how-limitations"><h3 data-i18n="whatSiteCanTellTitle">What this site can and cannot tell you</h3>
+        <ul><li data-i18n="howLimitOneWell"></li><li data-i18n="howLimitScenario"></li><li data-i18n="howLimitCriticalDepth"></li><li data-i18n="howLimitDistrictAverage"></li></ul>
+      </div>
     </section>
   </main>
 </body>
