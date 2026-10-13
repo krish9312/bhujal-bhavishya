@@ -83,8 +83,8 @@
         </dl>
         <div class="well-controls">
           <div class="well-control-group">
-            <label class="well-control" for="critical-depth"><span data-i18n="referenceDepthLabel">Reference depth (m)</span><input id="critical-depth" type="number" min="0" step="1"></label>
-            <p class="well-assumption" data-i18n="referenceDepthAssumption">Optional comparison line chosen by this project, not an official or district-wide threshold.</p>
+            <label class="well-control" for="critical-depth"><span data-i18n="criticalDepthLabel">Critical depth (m)</span><input id="critical-depth" type="number" min="0" step="1"></label>
+            <p class="well-assumption" data-i18n="criticalDepthAssumption">The default is 70% of recorded well depth, a project assumption—not an official threshold.</p>
           </div>
           <div class="well-control-group"><label class="well-control" for="trend-start-year"><span data-i18n="trendStartLabel">Trend start year</span><select id="trend-start-year"></select></label></div>
         </div>
@@ -92,7 +92,7 @@
         <div class="well-results">
           <div><span data-i18n="trendSlopeLabel">Slope</span><strong id="trend-slope">—</strong><small class="well-result-hint" data-i18n="slopeHint">positive = water table getting deeper</small></div>
           <div><span data-i18n="trendR2Label">R2</span><strong id="trend-r2">—</strong></div>
-          <div><span data-i18n="referenceDepthCrossingYear">Estimated crossing year (trend only)</span><strong id="critical-year">—</strong><small class="well-result-hint" id="critical-year-detail"></small></div>
+          <div><span data-i18n="criticalYearLabel">Predicted critical year</span><strong id="critical-year">—</strong><small class="well-result-hint" id="critical-year-detail"></small></div>
         </div>
         <p class="well-trend-range" id="well-trend-range"></p>
         <div class="well-chart-wrap"><canvas id="well-chart" aria-describedby="well-title" data-i18n="wellChartAccessibleLabel">Observed groundwater depth and fitted trend</canvas><p id="well-chart-fallback" class="chart-fallback" data-i18n="chartUnavailable" hidden>Chart library could not be loaded.</p></div>
@@ -160,7 +160,7 @@
         <li data-i18n="howScenarioMeaning"></li>
       </ol>
       <div class="how-limitations"><h3 data-i18n="whatSiteCanTellTitle">What this site can and cannot tell you</h3>
-        <ul><li data-i18n="howLimitOneWell"></li><li data-i18n="howLimitScenario"></li><li data-i18n="howLimitReferenceDepth"></li><li data-i18n="howLimitDistrictAverage"></li></ul>
+        <ul><li data-i18n="howLimitOneWell"></li><li data-i18n="howLimitScenario"></li><li data-i18n="howLimitCriticalDepth"></li><li data-i18n="howLimitDistrictAverage"></li></ul>
       </div>
     </section>
   </main>

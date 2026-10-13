@@ -19,7 +19,7 @@ The “What it would take” calculator shows two separate ways to reach the sel
 
 The calculator expresses both values in hectare-metres and million cubic metres. These are simplified comparisons, not project designs; actual recharge and extraction projects depend on local conditions.
 
-The “How it works” section explains the assessment, monitoring-well trends, and limitations. The well graph represents only its selected station. Its reference depth is a project-set comparison value, not an official or district-wide threshold; the trend extrapolation is not a forecast.
+The “How it works” section explains the assessment, monitoring-well trends, and limitations. The well graph represents only its selected station. Its default critical depth is 70% of the recorded physical well depth, an educational project assumption rather than an official or district-wide groundwater threshold. The displayed critical year extrapolates the selected station's historical trend and is not a forecast.
 
 ## Data
 

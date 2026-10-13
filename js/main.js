@@ -229,7 +229,7 @@ async function loadWellTrendRows() {
 }
 
 function renderWellLimitations(well) {
-  const keys = ["limitationOneWell", "limitationReferenceDepth", "limitationTrendEstimate"];
+  const keys = ["limitationOneWell", "limitationCriticalAssumption", "limitationForecast"];
   if (well.well_type === "Tube Well" || /Pz/i.test(well.label ?? "")) keys.push("limitationRecharge");
   keys.push("limitationDataEnd", "limitationAnnualMedian", "limitationWeakFit");
   document.querySelector("#well-limitations-list").replaceChildren(...keys.map((key) => {
@@ -286,29 +286,28 @@ function renderWellAnalysis() {
   slopeValue.textContent = regression.slope === null ? text("noData") : `${regression.slope > 0 ? "+" : ""}${formatNumber(regression.slope, 2)} ${text("meterPerYear")}`;
   r2Value.textContent = regression.r2 === null ? text("noData") : formatNumber(regression.r2, 2);
   const criticalYearDetail = document.querySelector("#critical-year-detail");
-  criticalYearValue.textContent = criticalYearStatusKey(regression.slope, regression.r2, false)
-    && hasCriticalDepth
+  criticalYearValue.textContent = hasCriticalDepth && criticalYearStatusKey(regression.slope, regression.r2, false)
     ? text(criticalYearStatusKey(regression.slope, regression.r2, false))
     : "—";
   criticalYearDetail.textContent = "";
   criticalYearDetail.hidden = true;
-  document.querySelector("#critical-depth").placeholder = text("referenceDepthPlaceholder");
+  document.querySelector("#critical-depth").placeholder = text("criticalDepthPlaceholder");
   document.querySelector("#well-trend-range").textContent = usedPoints.length
     ? text("trendRange").replace("{start}", String(usedPoints[0].year)).replace("{end}", String(usedPoints.at(-1).year)).replace("{n}", String(regression.n))
     : text("notEnoughTrendData");
 
-  if (hasInvalidCriticalDepth) messages.push(text("invalidReferenceDepth"));
+  if (hasInvalidCriticalDepth) messages.push(text("invalidCriticalDepth"));
   if (!enoughData) messages.push(text("notEnoughTrendData"));
   const slopeMessage = trendMessageKey(regression.slope);
   if (slopeMessage) messages.push(text(slopeMessage));
   if (regression.r2 !== null && regression.r2 < 0.3) messages.push(text("weakFit"));
   const alreadyReached = hasCriticalDepth && latest && latest.depth > criticalDepth;
   if (alreadyReached) {
-    messages.push(`${text("referenceDepthReached")} ${text("referenceDepthCrossingHint")}`);
-    criticalYearValue.textContent = text("referenceAlreadyCrossed");
+    messages.push(`${text("criticalDepthReached")} ${text("raiseCriticalDepthHint")}`);
+    criticalYearValue.textContent = text("alreadyReachedYear");
     const firstObservedYear = wellSeries.find(({ depth }) => depth > criticalDepth)?.year;
     if (firstObservedYear !== undefined) {
-      criticalYearDetail.textContent = text("firstObservedBeyondReferenceDepth").replace("{year}", String(firstObservedYear));
+      criticalYearDetail.textContent = text("firstObservedBeyondDepth").replace("{year}", String(firstObservedYear));
       criticalYearDetail.hidden = false;
     }
   } else if (hasCriticalDepth) {
@@ -396,7 +395,7 @@ function renderWellChart(regression, startYear, criticalDepth, hasCriticalDepth)
   }
   if (hasCriticalDepth) {
     data.push({
-      label: text("referenceDepthLine"),
+      label: text("criticalDepthLine"),
       data: [{ x: wellSeries[0]?.year ?? startYear, y: criticalDepth }, { x: maxYear, y: criticalDepth }],
       showLine: true,
       borderColor: "#bf4b50",
@@ -507,8 +506,13 @@ async function loadWellForDistrict(district, stationCode = null) {
     document.querySelector("#well-range").textContent = `${well.first_year}–${well.last_year}`;
 
     const criticalInput = document.querySelector("#critical-depth");
-    criticalInput.value = "";
-    criticalInput.placeholder = text("referenceDepthPlaceholder");
+    const wellDepth = well.well_depth === null || well.well_depth === ""
+      ? Number.NaN
+      : Number(well.well_depth);
+    criticalInput.value = Number.isFinite(wellDepth) && wellDepth > 1
+      ? String(Math.round(wellDepth * 0.7))
+      : "";
+    criticalInput.placeholder = text("criticalDepthPlaceholder");
     const trendSelect = document.querySelector("#trend-start-year");
     const years = series.map(({ year }) => year);
     trendSelect.replaceChildren(...years.map((year) => {
