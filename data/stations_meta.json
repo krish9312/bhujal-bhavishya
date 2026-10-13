@@ -1,0 +1,67 @@
+[
+  {
+    "station_code":"242140071304001",
+    "well_type":"Tube Well",
+    "well_aquifer_type":"Confined",
+    "latitude":"24.3611",
+    "longitude":"71.5111",
+    "well_depth":"73.0",
+    "label":"Vav ii",
+    "taluka":"Vav",
+    "district":"Vav-Tharad (formerly Banaskantha)",
+    "first_year":1997,
+    "last_year":2023
+  },
+  {
+    "station_code":"231500069400002",
+    "well_type":"Dug Well",
+    "well_aquifer_type":"Unconfined",
+    "latitude":"23.25",
+    "longitude":"69.6667",
+    "well_depth":"21.5",
+    "label":"Bhuj (Circuit House)",
+    "taluka":"Bhuj",
+    "district":"Kachchh",
+    "first_year":1994,
+    "last_year":2022
+  },
+  {
+    "station_code":"231521068502401",
+    "well_type":"Tube Well",
+    "well_aquifer_type":"Unconfined",
+    "latitude":"23.2558",
+    "longitude":"68.84",
+    "well_depth":"51.0",
+    "label":"Naliya",
+    "taluka":"Abdasa",
+    "district":"Kachchh",
+    "first_year":1998,
+    "last_year":2023
+  },
+  {
+    "station_code":"234200072320004",
+    "well_type":"Tube Well",
+    "well_aquifer_type":"Unconfined",
+    "latitude":"23.7",
+    "longitude":"72.5333",
+    "well_depth":"60.0",
+    "label":"Visnagar iv",
+    "taluka":"Visnagar",
+    "district":"Mehsana",
+    "first_year":1996,
+    "last_year":2023
+  },
+  {
+    "station_code":"214100069444503",
+    "well_type":"Dug Well",
+    "well_aquifer_type":"Unconfined",
+    "latitude":"21.6833",
+    "longitude":"69.7458",
+    "well_depth":"34.0",
+    "label":"Ranavav2",
+    "taluka":"Ranavav",
+    "district":"Porbandar",
+    "first_year":1991,
+    "last_year":2023
+  }
+]

@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#eaf4f0">
+  <meta name="description" content="District groundwater status dashboard based on CGWB assessment data.">
+  <title>Bhujal Bhavishya | District groundwater status</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Gujarati:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.9/dist/chart.umd.min.js" integrity="sha384-b0GXujLkk9eYYSmcSfoyZbfyElGAQnDyY0skCHSG6w3JgTMFnz11ggrTAr7seu9f" crossorigin="anonymous"></script>
+  <script type="module" src="js/main.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="Bhujal Bhavishya home">
+      <span class="brand-mark" aria-hidden="true"><span></span></span>
+      <span class="brand-copy"><strong><span data-i18n="brandLatin">Bhujal Bhavishya</span> <span class="brand-gujarati" lang="gu" data-i18n="brandGujarati">(ભૂજળ ભવિષ્ય)</span></strong><small data-i18n="headerSubtitle">District groundwater status dashboard based on CGWB assessment data</small></span>
+    </a>
+    <div class="header-tools">
+      <label class="language-control" for="language-select"><span class="sr-only" data-i18n="language">Language</span>
+        <select id="language-select" aria-label="Language">
+          <option value="en">English</option>
+          <option value="gu">ગુજરાતી</option>
+        </select>
+      </label>
+    </div>
+  </header>
+
+  <main id="top" class="page-shell dashboard-shell">
+    <section class="dashboard-intro" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow" data-i18n="dashboardEyebrow">GROUNDWATER RESOURCE ASSESSMENT</p>
+        <h1 id="page-title" data-i18n="dashboardTitle">District groundwater status</h1>
+      </div>
+      <label class="field district-picker" for="district-select"><span data-i18n="districtSelectLabel">District</span><select id="district-select"><option value="" data-i18n="selectDistrict">Select a district</option></select></label>
+    </section>
+
+    <p class="form-error data-error" id="data-error" role="alert" hidden></p>
+    <section class="district-dashboard" id="district-dashboard" hidden aria-live="polite">
+      <div class="assessment-heading"><div><p class="section-kicker" data-i18n="assessmentKicker">CGWB ASSESSMENT</p><h2 id="selected-district-name">—</h2></div><span class="assessment-year" id="assessment-year">—</span></div>
+      <p class="no-data-note" id="no-data-note" data-i18n="noAssessmentData" hidden>No data in this assessment table</p>
+      <div class="assessment-metrics">
+        <article class="district-metric"><span data-i18n="rainfallLabel">Rainfall</span><strong id="rainfall-value">—</strong><small>mm</small></article>
+        <article class="district-metric"><span data-i18n="extractableLabel">Annual extractable ground water resource</span><strong id="resource-value">—</strong><small>ham</small></article>
+        <article class="district-metric"><span data-i18n="extractionLabel">Annual ground water extraction</span><strong id="extraction-value">—</strong><small>ham</small></article>
+        <article class="district-metric stage-metric"><span data-i18n="stageLabel">Stage of extraction</span><strong id="stage-value">—</strong><span class="category-badge" id="stage-category">—</span></article>
+      </div>
+      <p class="unit-note" data-i18n="hamDefinition">ham = hectare-metre = 10,000 m3</p>
+      <p class="stage-formula" data-i18n="stageFormula">Stage of extraction = extraction / extractable resource x 100</p>
+      <p class="source-line" id="source-line">—</p>
+    </section>
+
+    <section class="well-panel" id="well-panel" aria-labelledby="well-title" hidden>
+      <div class="section-heading">
+        <div><p class="section-kicker" data-i18n="wellKicker">MONITORING WELL</p><h2 id="well-title" data-i18n="wellTitle">Groundwater level (monitoring well)</h2></div>
+      </div>
+      <p class="well-status" id="well-status" role="status" data-i18n="wellLoading" hidden>Loading monitoring well data…</p>
+      <p class="well-error" id="well-error" role="alert" hidden></p>
+      <p class="well-status" id="well-missing" data-i18n="noMonitoringWell" hidden>No monitoring well loaded for this district.</p>
+      <div id="well-content" hidden>
+        <dl class="well-info">
+          <div><dt data-i18n="wellLabel">Well</dt><dd id="well-label">—</dd><span class="well-verification-badge" id="well-verified" data-i18n="verifiedBadge" hidden>Verified</span><span class="well-name-note" id="well-unverified" data-i18n="wellUnverified" hidden>District match not yet verified</span></div>
+          <div><dt data-i18n="stationCode">Station code</dt><dd id="well-station-code">—</dd></div>
+          <div><dt data-i18n="wellType">Well type</dt><dd id="well-type">—</dd></div>
+          <div><dt data-i18n="aquiferType">Aquifer type</dt><dd id="well-aquifer">—</dd></div>
+          <div><dt data-i18n="wellDepth">Well depth</dt><dd id="well-depth">—</dd></div>
+          <div><dt data-i18n="dataRange">Data range</dt><dd id="well-range">—</dd></div>
+          <div><dt data-i18n="wellSource">Source</dt><dd data-i18n="wellSourceValue">CGWB via India-WRIS</dd></div>
+        </dl>
+        <div class="well-controls">
+          <div class="well-control-group">
+            <label class="well-control" for="critical-depth"><span data-i18n="criticalDepthLabel">Critical depth (m)</span><input id="critical-depth" type="number" min="0" step="1"></label>
+            <p class="well-assumption" data-i18n="criticalDepthAssumption">This is an assumption chosen by this project, not an official threshold.</p>
+          </div>
+          <div class="well-control-group"><label class="well-control" for="trend-start-year"><span data-i18n="trendStartLabel">Trend start year</span><select id="trend-start-year"></select></label></div>
+        </div>
+        <ul class="well-messages" id="well-messages" aria-live="polite"></ul>
+        <div class="well-results">
+          <div><span data-i18n="trendSlopeLabel">Slope</span><strong id="trend-slope">—</strong><small class="well-result-hint" data-i18n="slopeHint">positive = water table getting deeper</small></div>
+          <div><span data-i18n="trendR2Label">R2</span><strong id="trend-r2">—</strong></div>
+          <div><span data-i18n="criticalYearLabel">Predicted critical year</span><strong id="critical-year">—</strong><small class="well-result-hint" id="critical-year-detail"></small></div>
+        </div>
+        <p class="well-trend-range" id="well-trend-range"></p>
+        <div class="well-chart-wrap"><canvas id="well-chart" aria-describedby="well-title" data-i18n="wellChartAccessibleLabel">Observed groundwater depth and fitted trend</canvas><p id="well-chart-fallback" class="chart-fallback" data-i18n="chartUnavailable" hidden>Chart library could not be loaded.</p></div>
+        <p class="well-gap-note" data-i18n="chartGapNote">Gaps = no readings in those years</p>
+        <div class="well-limitations">
+          <h3 data-i18n="limitationsTitle">Limitations</h3>
+          <ul id="well-limitations-list"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="scenario-panel" aria-labelledby="scenario-title">
+      <div class="section-heading">
+        <div><p class="section-kicker" data-i18n="scenarioKicker">SCENARIO, NOT A FORECAST</p><h2 id="scenario-title" data-i18n="scenarioTitle">Extraction growth scenario</h2></div>
+        <output id="growth-output" for="growth-slider">2%</output>
+      </div>
+      <label class="slider-field" for="growth-slider"><span data-i18n="growthLabel">Yearly growth in extraction (%)</span><input id="growth-slider" type="range" min="0" max="5" step="0.5" value="2"></label>
+      <p class="assumption-note" data-i18n="growthAssumption">This is an assumption chosen by this project, not an official figure.</p>
+      <div class="scenario-table-wrap"><table class="scenario-table"><thead><tr><th scope="col" data-i18n="scenarioThreshold">Threshold</th><th scope="col" data-i18n="scenarioYears">Years</th><th scope="col" data-i18n="scenarioYear">Calendar year</th></tr></thead><tbody id="scenario-rows"></tbody></table></div>
+    </section>
+
+    <div class="dashboard-grid">
+      <section class="chart-panel" aria-labelledby="chart-title">
+        <div class="section-heading"><div><p class="section-kicker" data-i18n="rankedKicker">DISTRICT COMPARISON</p><h2 id="chart-title" data-i18n="rankedTitle">Extraction stage by district</h2></div></div>
+        <div class="district-chart-wrap"><canvas id="district-chart" aria-describedby="chart-title" data-i18n="chartAccessibleLabel">District groundwater extraction stage chart</canvas><p id="chart-fallback" class="chart-fallback" data-i18n="chartUnavailable" hidden>Chart library could not be loaded.</p></div>
+      </section>
+      <section class="table-panel" aria-labelledby="table-title">
+        <div class="section-heading"><div><p class="section-kicker" data-i18n="allDistrictsKicker">ALL DISTRICTS</p><h2 id="table-title" data-i18n="tableTitle">Assessment table</h2></div></div>
+        <div class="district-table-wrap"><table class="district-table"><thead><tr>
+          <th scope="col"><button type="button" data-sort="district" data-i18n="districtColumn">District</button></th>
+          <th scope="col"><button type="button" data-sort="rainfall_mm" data-i18n="rainfallColumn">Rain (mm)</button></th>
+          <th scope="col"><button type="button" data-sort="extractableResource" data-i18n="resourceColumn">Extractable (ham)</button></th>
+          <th scope="col"><button type="button" data-sort="extraction" data-i18n="extractionColumn">Extraction (ham)</button></th>
+          <th scope="col"><button type="button" data-sort="stage" data-i18n="stageColumn">Stage (%)</button></th>
+          <th scope="col"><button type="button" data-sort="category" data-i18n="categoryColumn">Category</button></th>
+        </tr></thead><tbody id="district-rows"></tbody></table></div>
+      </section>
+    </div>
+
+    <section class="read-care-panel" aria-labelledby="read-care-title">
+      <div class="section-heading"><div><p class="section-kicker" data-i18n="careKicker">INTERPRET WITH CARE</p><h2 id="read-care-title" data-i18n="readCareTitle">Read with care</h2></div></div>
+      <ul class="read-care-list"><li data-i18n="careDistrictAverages">These are district-level averages and can hide stressed talukas.</li><li data-i18n="careScenario">The scenario assumes extraction grows at a constant rate and extractable resource stays the same.</li><li data-i18n="careAssessment">This is a CGWB assessment for the stated year and may have changed since.</li><li data-i18n="careRainfall">Rainfall is the figure reported in the same assessment table.</li></ul>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bhujal Bhavishya model tests</title>
+  <style>
+    body { max-width: 760px; margin: 40px auto; padding: 0 20px; color: #173b38; font: 15px/1.6 sans-serif; }
+    li { padding: 4px 0; } .pass { color: #176744; } .fail { color: #a33232; }
+  </style>
+</head>
+<body>
+  <h1>Groundwater model checks</h1>
+  <p id="summary">Running…</p>
+  <ol id="test-results"></ol>
+  <script type="module">
+    import { breakSeriesGaps, classifyStage, criticalYearStatusKey, linearRegression, predictYearForDepth, stageOfExtraction, trendMessageKey, yearsToThreshold } from "../js/model.js";
+    import { translations } from "../js/i18n.js";
+    import { getDistricts } from "../js/dataSource.js";
+    const results = document.querySelector("#test-results");
+    const checks = [];
+    const near = (actual, expected, tolerance = 0.01) => Math.abs(actual - expected) <= tolerance;
+    function check(name, condition) { checks.push({ name, passed: Boolean(condition) }); }
+
+    const districts = await getDistricts();
+    const porbandar = districts.find(({ district }) => district === "Porbandar");
+    const sabarkantha = districts.find(({ district }) => district === "Sabarkantha");
+    const porbandarStage = stageOfExtraction(porbandar.extraction, porbandar.extractableResource);
+    const sabarkanthaStage = stageOfExtraction(sabarkantha.extraction, sabarkantha.extractableResource);
+    check("Nine assessment districts load", districts.length === 9);
+    check("Porbandar stage is about 56.8% and Safe", near(porbandarStage, 56.8, 0.1) && classifyStage(porbandarStage) === "Safe");
+    check("Sabarkantha stage is about 72.0% and Semi-critical", near(sabarkanthaStage, 72.0, 0.1) && classifyStage(sabarkanthaStage) === "Semi-critical");
+    check("70% is Safe", classifyStage(70) === "Safe");
+    check("70.1% is Semi-critical", classifyStage(70.1) === "Semi-critical");
+    check("90% is Semi-critical", classifyStage(90) === "Semi-critical");
+    check("90.1% is Critical", classifyStage(90.1) === "Critical");
+    check("100% is Critical", classifyStage(100) === "Critical");
+    check("100.1% is Over-exploited", classifyStage(100.1) === "Over-exploited");
+    check("Null stage classifies as null", classifyStage(null) === null);
+    check("Extractable resource zero returns null", stageOfExtraction(1, 0) === null);
+    check("Null or missing stage inputs return null", stageOfExtraction(null, 1) === null && stageOfExtraction(1, null) === null && stageOfExtraction(undefined, 1) === null);
+    check("Negative extraction returns null", stageOfExtraction(-1, 1) === null);
+    check("Negative resource returns null", stageOfExtraction(1, -1) === null);
+    check("Porbandar reaches 70% in about 10.6 years at 2% growth", near(yearsToThreshold(porbandar.extraction, porbandar.extractableResource, 70, 2), 10.6, 0.1));
+    check("Zero growth has no threshold time", yearsToThreshold(porbandar.extraction, porbandar.extractableResource, 70, 0) === null);
+    check("Sabarkantha is already above 70%", yearsToThreshold(sabarkantha.extraction, sabarkantha.extractableResource, 70, 2) === 0);
+    const rann = districts.find(({ district }) => district === "Rann and Kutch");
+    check("Rann and Kutch assessment values are null", rann.rainfall_mm === null && rann.extractableResource === null && rann.extraction === null);
+    const trendPoints = Array.from({ length: 10 }, (_, index) => {
+      const year = 2012 + index;
+      return { year, depth: 5 + 1.2 * (year - 2012) };
+    });
+    const trend = linearRegression(trendPoints, 2012);
+    check("Linear regression finds the synthetic 1.2 m/year trend", near(trend.slope, 1.2, 0.01) && near(trend.r2, 1, 0.01) && trend.n === 10);
+    const knownIntercept = 5 - 1.2 * 2012;
+    check("Predicted year at 17 m is about 2022", near(predictYearForDepth(1.2, knownIntercept, 17), 2022, 0.1));
+    check("Non-positive trend slope has no predicted year", predictYearForDepth(0, trend.intercept, 17) === null && predictYearForDepth(-1, trend.intercept, 17) === null);
+    const shortTrend = linearRegression(trendPoints.slice(0, 4), 2012);
+    check("Regression with fewer than five points remains calculable for UI handling", shortTrend.n === 4 && near(shortTrend.slope, 1.2, 0.01));
+    check("Regression with fewer than two points returns null", linearRegression(trendPoints.slice(0, 1), 2012) === null);
+    const brokenSeries = breakSeriesGaps([{ year: 1995, depth: 4, n: 1 }, { year: 2012, depth: 6, n: 2 }, { year: 2014, depth: 7, n: 1 }]);
+    check("Gap-breaking helper inserts a null point across gaps over three years", brokenSeries.some(({ year, depth }) => year === 1996 && depth === null));
+    check("Gap-breaking helper does not split gaps of three years or less", !brokenSeries.some(({ year, depth }) => year === 2013 && depth === null));
+    check("Negative slope uses the recovering trend message key", trendMessageKey(-0.59) === "recoveringTrend");
+    check("Already-reached critical depth uses its own predicted-year wording key", criticalYearStatusKey(1.69, true) === "alreadyReachedYear");
+    check("Recovering and flat trends keep the not-applicable wording key", criticalYearStatusKey(-0.59, false) === "notApplicable" && criticalYearStatusKey(0.05, false) === "notApplicable");
+    check("New critical-year and guidance wording is translated", translations.en.alreadyReachedYear === "Already reached" && translations.gu.alreadyReachedYear && translations.en.firstObservedBeyondDepth.includes("{year}") && translations.gu.firstObservedBeyondDepth.includes("{year}") && translations.en.raiseCriticalDepthHint && translations.gu.raiseCriticalDepthHint);
+    const positiveTrendPrediction = predictYearForDepth(1.69, 10 - 1.69 * 2020, 10);
+    check("Positive 1.69 slope with R2 0.51 can predict a critical year", 0.51 >= 0.3 && positiveTrendPrediction !== null && near(positiveTrendPrediction, 2020, 0.1));
+
+    checks.forEach(({ name, passed }) => {
+      const item = document.createElement("li");
+      item.className = passed ? "pass" : "fail";
+      item.textContent = `${passed ? "PASS" : "FAIL"}: ${name}`;
+      results.append(item);
+    });
+    const failed = checks.filter(({ passed }) => !passed).length;
+    document.querySelector("#summary").textContent = `${checks.length - failed}/${checks.length} checks passed.`;
+    document.title = failed ? "FAIL - model tests" : "PASS - model tests";
+  </script>
+</body>
+</html>

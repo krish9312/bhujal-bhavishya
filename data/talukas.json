@@ -1,0 +1,47 @@
+{
+  "242140071304001": {
+    "assessmentYear": "2023-2024",
+    "category": "Saline",
+    "rainfall_mm": 520,
+    "extractableResource": null,
+    "extraction": null,
+    "unit": "ham",
+    "reportedStage": null
+  },
+  "231500069400002": {
+    "assessmentYear": "2023-2024",
+    "category": null,
+    "rainfall_mm": null,
+    "extractableResource": null,
+    "extraction": null,
+    "unit": "ham",
+    "reportedStage": null
+  },
+  "231521068502401": {
+    "assessmentYear": "2023-2024",
+    "category": null,
+    "rainfall_mm": null,
+    "extractableResource": null,
+    "extraction": null,
+    "unit": "ham",
+    "reportedStage": null
+  },
+  "234200072320004": {
+    "assessmentYear": "2023-2024",
+    "category": null,
+    "rainfall_mm": null,
+    "extractableResource": null,
+    "extraction": null,
+    "unit": "ham",
+    "reportedStage": null
+  },
+  "214100069444503": {
+    "assessmentYear": "2023-2024",
+    "category": null,
+    "rainfall_mm": null,
+    "extractableResource": null,
+    "extraction": null,
+    "unit": "ham",
+    "reportedStage": null
+  }
+}

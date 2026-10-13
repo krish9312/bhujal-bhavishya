@@ -1,0 +1,11 @@
+[
+  {"district":"Porbandar","name_gu":"પોરબંદર","assessmentYear":"2023-2024","baseYear":2024,"rainfall_mm":843.63,"extractableResource":21206.22,"extraction":12037.49},
+  {"district":"Rajkot","name_gu":"રાજકોટ","assessmentYear":"2023-2024","baseYear":2024,"rainfall_mm":809.39,"extractableResource":163804.34,"extraction":107554.69},
+  {"district":"Rann and Kutch","name_gu":"રણ અને કચ્છ","assessmentYear":"2023-2024","baseYear":2024,"rainfall_mm":null,"extractableResource":null,"extraction":null},
+  {"district":"Sabarkantha","name_gu":"સાબરકાંઠા","assessmentYear":"2023-2024","baseYear":2024,"rainfall_mm":919.29,"extractableResource":76157.96,"extraction":54868.46},
+  {"district":"Surat","name_gu":"સુરત","assessmentYear":"2023-2024","baseYear":2024,"rainfall_mm":1551.19,"extractableResource":134468.93,"extraction":57022.10},
+  {"district":"Surendranagar","name_gu":"સુરેન્દ્રનગર","assessmentYear":"2023-2024","baseYear":2024,"rainfall_mm":606.88,"extractableResource":76058.35,"extraction":37335.20},
+  {"district":"Tapi","name_gu":"તાપી","assessmentYear":"2023-2024","baseYear":2024,"rainfall_mm":1484.27,"extractableResource":70815.24,"extraction":23128.06},
+  {"district":"Vadodara","name_gu":"વડોદરા","assessmentYear":"2023-2024","baseYear":2024,"rainfall_mm":897.58,"extractableResource":102632.67,"extraction":68646.06},
+  {"district":"Valsad","name_gu":"વલસાડ","assessmentYear":"2023-2024","baseYear":2024,"rainfall_mm":2487.50,"extractableResource":69211.53,"extraction":20470.65}
+]

@@ -1,0 +1,15 @@
+{
+  "series": [
+    {
+      "taluka": "Bhuj",
+      "readings": [
+        { "year": 2016, "depth": 4.0 }, { "year": 2017, "depth": 5.3 },
+        { "year": 2018, "depth": 6.9 }, { "year": 2019, "depth": 8.0 },
+        { "year": 2020, "depth": 9.6 }, { "year": 2021, "depth": 10.8 },
+        { "year": 2022, "depth": 12.5 }, { "year": 2023, "depth": 13.9 },
+        { "year": 2024, "depth": 15.2 }, { "year": 2025, "depth": 16.7 },
+        { "year": 2026, "depth": 18.0 }
+      ]
+    }
+  ]
+}
