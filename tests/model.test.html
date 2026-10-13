@@ -16,21 +16,26 @@
   <script type="module">
     import { breakSeriesGaps, calculateExtraRechargeNeeded, calculateHeadroom, calculateReductionNeeded, classifyStage, criticalYearStatusKey, linearRegression, predictYearForDepth, stageOfExtraction, trendMessageKey, yearsToThreshold } from "../js/model.js";
     import { translations } from "../js/i18n.js";
-    import { getDistricts } from "../js/dataSource.js";
+    import { getDistricts, getWells } from "../js/dataSource.js";
     const results = document.querySelector("#test-results");
     const checks = [];
     const near = (actual, expected, tolerance = 0.01) => Math.abs(actual - expected) <= tolerance;
     function check(name, condition) { checks.push({ name, passed: Boolean(condition) }); }
 
     const districts = await getDistricts();
+    const wells = await getWells();
     const porbandar = districts.find(({ district }) => district === "Porbandar");
     const sabarkantha = districts.find(({ district }) => district === "Sabarkantha");
     const vadodara = districts.find(({ district }) => district === "Vadodara");
     const porbandarStage = stageOfExtraction(porbandar.extraction, porbandar.extractableResource);
     const sabarkanthaStage = stageOfExtraction(sabarkantha.extraction, sabarkantha.extractableResource);
-    check("Nine assessment districts load", districts.length === 9);
-    check("Porbandar stage is about 56.8% and Safe", near(porbandarStage, 56.8, 0.1) && classifyStage(porbandarStage) === "Safe");
-    check("Sabarkantha stage is about 72.0% and Semi-critical", near(sabarkanthaStage, 72.0, 0.1) && classifyStage(sabarkanthaStage) === "Semi-critical");
+    check("Assessment districts load", districts.length === 34);
+    const assessmentDistricts = districts.filter(({ rainfall_mm, extractableResource, extraction }) => rainfall_mm !== null || extractableResource !== null || extraction !== null);
+    const wellDistricts = new Set(wells.map(({ district }) => district));
+    check("Monitoring wells cover every district with assessment data", assessmentDistricts.every(({ district }) => wellDistricts.has(district)));
+    check("Multiple stations are available for at least one district", wells.length > wellDistricts.size && wells.some((well) => wells.some((other) => other.district === well.district && other.station_code !== well.station_code)));
+    check("Porbandar stage is about 55.0% and Safe", near(porbandarStage, 55.0, 0.1) && classifyStage(porbandarStage) === "Safe");
+    check("Sabarkantha stage is about 76.5% and Semi-critical", near(sabarkanthaStage, 76.5, 0.1) && classifyStage(sabarkanthaStage) === "Semi-critical");
     check("70% is Safe", classifyStage(70) === "Safe");
     check("70.1% is Semi-critical", classifyStage(70.1) === "Semi-critical");
     check("90% is Semi-critical", classifyStage(90) === "Semi-critical");
@@ -42,12 +47,12 @@
     check("Null or missing stage inputs return null", stageOfExtraction(null, 1) === null && stageOfExtraction(1, null) === null && stageOfExtraction(undefined, 1) === null);
     check("Negative extraction returns null", stageOfExtraction(-1, 1) === null);
     check("Negative resource returns null", stageOfExtraction(1, -1) === null);
-    check("Porbandar reaches 70% in about 10.6 years at 2% growth", near(yearsToThreshold(porbandar.extraction, porbandar.extractableResource, 70, 2), 10.6, 0.1));
+    check("Porbandar reaches 70% in about 12.2 years at 2% growth", near(yearsToThreshold(porbandar.extraction, porbandar.extractableResource, 70, 2), 12.2, 0.1));
     check("Zero growth has no threshold time", yearsToThreshold(porbandar.extraction, porbandar.extractableResource, 70, 0) === null);
     check("Sabarkantha is already above 70%", yearsToThreshold(sabarkantha.extraction, sabarkantha.extractableResource, 70, 2) === 0);
-    check("Sabarkantha needs about 1557.9 ham less extraction to reach 70%", near(calculateReductionNeeded(54868.46, 76157.96, 70), 1557.9, 0.02));
-    check("Sabarkantha needs about 2225.6 ham more extractable resource to reach 70%", near(calculateExtraRechargeNeeded(54868.46, 76157.96, 70), 2225.6, 0.06));
-    check("Vadodara has about 3196.8 ham of headroom at 70%", near(calculateHeadroom(vadodara.extraction, vadodara.extractableResource, 70), 3196.8, 0.02));
+    check("Sabarkantha needs about 4957.2 ham less extraction to reach 70%", near(calculateReductionNeeded(sabarkantha.extraction, sabarkantha.extractableResource, 70), 4957.175, 0.001));
+    check("Sabarkantha needs about 7081.7 ham more extractable resource to reach 70%", near(calculateExtraRechargeNeeded(sabarkantha.extraction, sabarkantha.extractableResource, 70), 7081.7, 0.06));
+    check("Vadodara has about 3628.7 ham of headroom at 70%", near(calculateHeadroom(vadodara.extraction, vadodara.extractableResource, 70), 3628.662, 0.001));
     check("Porbandar needs no change to reach 70%", calculateReductionNeeded(porbandar.extraction, porbandar.extractableResource, 70) === 0 && calculateExtraRechargeNeeded(porbandar.extraction, porbandar.extractableResource, 70) === 0);
     check("What-it-would-take functions return null for missing or invalid inputs", calculateReductionNeeded(null, 1, 70) === null && calculateReductionNeeded(1, null, 70) === null && calculateExtraRechargeNeeded(undefined, 1, 70) === null && calculateExtraRechargeNeeded(1, 1, null) === null);
     check("Headroom returns null for missing inputs", calculateHeadroom(null, 1, 70) === null && calculateHeadroom(1, null, 70) === null);
@@ -74,8 +79,8 @@
     check("Positive trend with a weak fit has no reliable critical-year key", criticalYearStatusKey(0.35, 0.02, false) === "noReliableTrend");
     check("Non-negative flat slope with a weak fit has no reliable critical-year key", criticalYearStatusKey(0.05, 0.02, false) === "noReliableTrend");
     check("Positive trend with an adequate fit can show a year", criticalYearStatusKey(1.69, 0.51, false) === null && near(predictYearForDepth(1.69, 10 - 1.69 * 2020, 10), 2020, 0.1));
-    check("New critical-year, headroom and guidance wording is translated", translations.en.alreadyReachedYear === "Already reached" && translations.gu.alreadyReachedYear && translations.en.noReliableTrend && translations.gu.noReliableTrend && translations.en.weakFitYearNote && translations.gu.weakFitYearNote && translations.en.headroomTitle && translations.gu.headroomTitle && translations.en.headroomDescription && translations.gu.headroomDescription && translations.en.firstObservedBeyondDepth.includes("{year}") && translations.gu.firstObservedBeyondDepth.includes("{year}") && translations.en.raiseCriticalDepthHint && translations.gu.raiseCriticalDepthHint);
-    check("New summary, calculator, comparison and explanation strings are translated", ["dataSummaryTitle", "summaryDistrictCoverage", "summaryHighestStage", "summaryDeepening", "summaryNoClearTrendMost", "whatItTakesTitle", "calculatorNote", "wellComparisonTitle", "deepeningTrendLabel", "howItWorksTitle", "howStageMeaning"].every((key) => translations.en[key] && translations.gu[key]));
+    check("Reference-depth and trend guidance is translated", ["wellDistrictCaveat", "referenceDepthLabel", "referenceDepthAssumption", "referenceDepthPlaceholder", "invalidReferenceDepth", "referenceDepthReached", "referenceAlreadyCrossed", "firstObservedBeyondReferenceDepth", "referenceDepthCrossingHint", "referenceDepthLine", "referenceDepthCrossingYear", "limitationReferenceDepth", "limitationTrendEstimate", "howWellDifference", "howLimitReferenceDepth"].every((key) => translations.en[key] && translations.gu[key] && translations.hi[key]));
+    check("Summary, calculator and explanation strings are translated", ["dataSummaryTitle", "summaryDistrictCoverage", "summaryHighestStage", "summaryDeepening", "summaryMoreWells", "wellSelectLabel", "summaryNoClearTrendMost", "whatItTakesTitle", "calculatorNote", "howItWorksTitle", "howStageMeaning"].every((key) => translations.en[key] && translations.gu[key] && translations.hi[key]));
     check("Hindi has a translation for every English UI key", Object.keys(translations.en).every((key) => Boolean(translations.hi[key])));
     check("English, Gujarati and Hindi include the Hindi language label", translations.en.hindiLanguage === "Hindi" && translations.gu.hindiLanguage === "હિન્દી" && translations.hi.hindiLanguage === "हिन्दी");
     check("Hindi includes district names", translations.hi.districtPorbandar === "पोरबंदर" && translations.hi.districtRannAndKutch);

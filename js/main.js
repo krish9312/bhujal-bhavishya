@@ -49,6 +49,31 @@ function districtName(district) {
   if (language === "gu") return district.name_gu;
   if (language === "hi") {
     const key = ({
+      Ahmedabad: "districtAhmedabad",
+      Amreli: "districtAmreli",
+      Anand: "districtAnand",
+      Arvalli: "districtArvalli",
+      Banaskantha: "districtBanaskantha",
+      Bharuch: "districtBharuch",
+      Bhavnagar: "districtBhavnagar",
+      Botad: "districtBotad",
+      "Chhota Udaipur": "districtChhotaUdaipur",
+      Dahod: "districtDahod",
+      Dang: "districtDang",
+      "Devbhumi Dwarka": "districtDevbhumiDwarka",
+      Gandhinagar: "districtGandhinagar",
+      "Gir Somnath": "districtGirSomnath",
+      Jamnagar: "districtJamnagar",
+      Junagadh: "districtJunagadh",
+      Kachchh: "districtKachchh",
+      Kheda: "districtKheda",
+      Mahesana: "districtMahesana",
+      Mahisagar: "districtMahisagar",
+      Morbi: "districtMorbi",
+      Narmada: "districtNarmada",
+      Navsari: "districtNavsari",
+      Panchmahal: "districtPanchmahal",
+      Patan: "districtPatan",
       Porbandar: "districtPorbandar",
       Rajkot: "districtRajkot",
       "Rann and Kutch": "districtRannAndKutch",
@@ -170,10 +195,10 @@ function renderDataSummary() {
   } else {
     const deepening = trendData.filter(({ regression }) => regression.slope > 0.5 && regression.r2 >= 0.3);
     const noClearTrend = trendData.filter(({ regression }) => !(Math.abs(regression.slope) > 0.1 && regression.r2 >= 0.3));
-    const wellList = deepening.map(({ well }) => {
-      const district = districts.find((entry) => entry.district === well.district);
-      return `${district ? districtName(district) : well.district} (${well.label})`;
-    });
+    const wellList = deepening.slice(0, 5).map(({ well }) => `${well.label} (${well.station_code})`);
+    if (deepening.length > 5) {
+      wellList.push(text("summaryMoreWells").replace("{count}", formatNumber(deepening.length - 5, 0)));
+    }
     summaryDeepening.textContent = text("summaryDeepening")
       .replace("{count}", formatNumber(deepening.length, 0))
       .replace("{total}", formatNumber(trendData.length, 0))
@@ -203,52 +228,10 @@ async function loadWellTrendRows() {
   }));
 }
 
-function renderWellComparison() {
-  const body = document.querySelector("#well-comparison-rows");
-  const error = document.querySelector("#well-comparison-error");
-  error.textContent = wellTrendError ? text("wellComparisonUnavailable") : "";
-  error.hidden = !wellTrendError;
-  body.replaceChildren(...wellTrendRows.map(({ well, series, regression }) => {
-    const row = document.createElement("tr");
-    row.tabIndex = 0;
-    row.setAttribute("aria-selected", String(selectedDistrict?.district === well.district));
-    if (selectedDistrict?.district === well.district) row.classList.add("selected");
-    if (regression && regression.slope > 0.5 && regression.r2 >= 0.3) row.classList.add("deepening-row");
-    const trendKey = !regression ? "noTrendData"
-      : regression.r2 < 0.3 ? "noClearTrendLabel"
-        : regression.slope < -0.1 ? "recoveringTrendLabel"
-        : regression.slope <= 0.1 ? "almostFlatTrendLabel" : "deepeningTrendLabel";
-    const district = districts.find((entry) => entry.district === well.district);
-    const cells = [
-      district ? districtName(district) : well.district,
-      well.label,
-      series.length ? `${series[0].year}–${series.at(-1).year}` : text("notAvailable"),
-      regression ? `${Math.abs(regression.slope) < 0.005 ? "" : regression.slope > 0 ? "+" : ""}${formatNumber(Math.abs(regression.slope) < 0.005 ? 0 : regression.slope, 2)}` : text("noData"),
-      regression ? formatNumber(regression.r2, 2) : text("noData")
-    ];
-    for (const value of cells) {
-      const cell = document.createElement("td");
-      cell.textContent = value;
-      row.append(cell);
-    }
-    const messageCell = document.createElement("td");
-    messageCell.textContent = text(trendKey);
-    row.append(messageCell);
-    row.addEventListener("click", () => selectDistrict(well.district));
-    row.addEventListener("keydown", (event) => {
-      if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        selectDistrict(well.district);
-      }
-    });
-    return row;
-  }));
-}
-
 function renderWellLimitations(well) {
-  const keys = ["limitationOneWell"];
+  const keys = ["limitationOneWell", "limitationReferenceDepth", "limitationTrendEstimate"];
   if (well.well_type === "Tube Well" || /Pz/i.test(well.label ?? "")) keys.push("limitationRecharge");
-  keys.push("limitationDataEnd", "limitationAnnualMedian", "limitationCriticalAssumption", "limitationForecast", "limitationWeakFit");
+  keys.push("limitationDataEnd", "limitationAnnualMedian", "limitationWeakFit");
   document.querySelector("#well-limitations-list").replaceChildren(...keys.map((key) => {
     const item = document.createElement("li");
     item.dataset.i18n = key;
@@ -296,36 +279,39 @@ function renderWellAnalysis() {
   const r2Value = document.querySelector("#trend-r2");
   const criticalYearValue = document.querySelector("#critical-year");
   const hasCriticalDepth = Number.isFinite(criticalDepth) && criticalDepth >= 0;
+  const criticalDepthInput = document.querySelector("#critical-depth");
+  const hasInvalidCriticalDepth = (criticalDepthInput.value !== "" || criticalDepthInput.validity.badInput) && !hasCriticalDepth;
   const enoughData = regression.n >= 5;
 
   slopeValue.textContent = regression.slope === null ? text("noData") : `${regression.slope > 0 ? "+" : ""}${formatNumber(regression.slope, 2)} ${text("meterPerYear")}`;
   r2Value.textContent = regression.r2 === null ? text("noData") : formatNumber(regression.r2, 2);
   const criticalYearDetail = document.querySelector("#critical-year-detail");
   criticalYearValue.textContent = criticalYearStatusKey(regression.slope, regression.r2, false)
+    && hasCriticalDepth
     ? text(criticalYearStatusKey(regression.slope, regression.r2, false))
     : "—";
   criticalYearDetail.textContent = "";
   criticalYearDetail.hidden = true;
-  document.querySelector("#critical-depth").placeholder = text("criticalDepthPlaceholder");
+  document.querySelector("#critical-depth").placeholder = text("referenceDepthPlaceholder");
   document.querySelector("#well-trend-range").textContent = usedPoints.length
     ? text("trendRange").replace("{start}", String(usedPoints[0].year)).replace("{end}", String(usedPoints.at(-1).year)).replace("{n}", String(regression.n))
     : text("notEnoughTrendData");
 
-  if (!hasCriticalDepth) messages.push(text("invalidCriticalDepth"));
+  if (hasInvalidCriticalDepth) messages.push(text("invalidReferenceDepth"));
   if (!enoughData) messages.push(text("notEnoughTrendData"));
   const slopeMessage = trendMessageKey(regression.slope);
   if (slopeMessage) messages.push(text(slopeMessage));
   if (regression.r2 !== null && regression.r2 < 0.3) messages.push(text("weakFit"));
   const alreadyReached = hasCriticalDepth && latest && latest.depth > criticalDepth;
   if (alreadyReached) {
-    messages.push(`${text("criticalDepthReached")} ${text("raiseCriticalDepthHint")}`);
-    criticalYearValue.textContent = text("alreadyReachedYear");
+    messages.push(`${text("referenceDepthReached")} ${text("referenceDepthCrossingHint")}`);
+    criticalYearValue.textContent = text("referenceAlreadyCrossed");
     const firstObservedYear = wellSeries.find(({ depth }) => depth > criticalDepth)?.year;
     if (firstObservedYear !== undefined) {
-      criticalYearDetail.textContent = text("firstObservedBeyondDepth").replace("{year}", String(firstObservedYear));
+      criticalYearDetail.textContent = text("firstObservedBeyondReferenceDepth").replace("{year}", String(firstObservedYear));
       criticalYearDetail.hidden = false;
     }
-  } else {
+  } else if (hasCriticalDepth) {
     const statusKey = criticalYearStatusKey(regression.slope, regression.r2, false);
     criticalYearValue.textContent = statusKey ? text(statusKey) : "—";
     if (statusKey === "noReliableTrend") {
@@ -410,7 +396,7 @@ function renderWellChart(regression, startYear, criticalDepth, hasCriticalDepth)
   }
   if (hasCriticalDepth) {
     data.push({
-      label: text("criticalDepthLine"),
+      label: text("referenceDepthLine"),
       data: [{ x: wellSeries[0]?.year ?? startYear, y: criticalDepth }, { x: maxYear, y: criticalDepth }],
       showLine: true,
       borderColor: "#bf4b50",
@@ -463,13 +449,15 @@ function renderWellChart(regression, startYear, criticalDepth, hasCriticalDepth)
   });
 }
 
-async function loadWellForDistrict(district) {
+async function loadWellForDistrict(district, stationCode = null) {
   const requestId = ++wellRequestId;
   const panel = document.querySelector("#well-panel");
   const status = document.querySelector("#well-status");
   const errorElement = document.querySelector("#well-error");
   const missing = document.querySelector("#well-missing");
   const content = document.querySelector("#well-content");
+  const wellSelectWrap = document.querySelector("#well-select-wrap");
+  const wellSelect = document.querySelector("#well-select");
   panel.hidden = false;
   document.querySelector("#well-chart").hidden = true;
   document.querySelector("#well-chart-fallback").hidden = true;
@@ -484,15 +472,28 @@ async function loadWellForDistrict(district) {
   wellChart = undefined;
 
   if (wellsError) {
+    wellSelectWrap.hidden = true;
     setWellError(wellsError);
     return;
   }
-  const well = wells.find((entry) => entry.district === district.district);
+  const districtWells = wells.filter((entry) => entry.district === district.district);
+  const savedStationCode = stationCode ?? readStorage(`well-${district.district}`);
+  const well = districtWells.find((entry) => entry.station_code === savedStationCode) ?? districtWells[0];
+  wellSelectWrap.hidden = districtWells.length < 2;
+  wellSelect.replaceChildren(...districtWells.map((entry) => {
+    const option = document.createElement("option");
+    option.value = entry.station_code;
+    option.textContent = `${entry.label} (${entry.station_code})`;
+    return option;
+  }));
   if (!well) {
+    wellSelect.value = "";
     status.hidden = true;
     missing.hidden = false;
     return;
   }
+  wellSelect.value = well.station_code;
+  writeStorage(`well-${district.district}`, well.station_code);
 
   try {
     const series = await getWellSeries(well.station_code);
@@ -506,13 +507,8 @@ async function loadWellForDistrict(district) {
     document.querySelector("#well-range").textContent = `${well.first_year}–${well.last_year}`;
 
     const criticalInput = document.querySelector("#critical-depth");
-    const wellDepth = well.well_depth === null || well.well_depth === ""
-      ? Number.NaN
-      : Number(well.well_depth);
-    criticalInput.value = Number.isFinite(wellDepth) && wellDepth >= 0 && wellDepth <= 100
-      ? String(Math.round(wellDepth * 0.7))
-      : "";
-    criticalInput.placeholder = text("criticalDepthPlaceholder");
+    criticalInput.value = "";
+    criticalInput.placeholder = text("referenceDepthPlaceholder");
     const trendSelect = document.querySelector("#trend-start-year");
     const years = series.map(({ year }) => year);
     trendSelect.replaceChildren(...years.map((year) => {
@@ -586,7 +582,6 @@ function applyTranslations() {
   renderChart();
   renderDataSummary();
   renderWhatItWouldTake();
-  renderWellComparison();
   if (selectedDistrict) {
     renderSelectedDistrict();
     renderWellAnalysis();
@@ -782,14 +777,14 @@ function renderChart() {
   });
 }
 
-function selectDistrict(name) {
+function selectDistrict(name, stationCode = null) {
   const district = districts.find((entry) => entry.district === name);
   if (!district) return;
   selectedDistrict = district;
   districtSelect.value = district.district;
   writeStorage("district", district.district);
   renderSelectedDistrict();
-  loadWellForDistrict(district);
+  loadWellForDistrict(district, stationCode);
   renderDistrictTable();
   renderChart();
 }
@@ -819,6 +814,9 @@ districtSelect.addEventListener("change", () => selectDistrict(districtSelect.va
 growthSlider.addEventListener("input", renderScenario);
 document.querySelector("#critical-depth").addEventListener("input", renderWellAnalysis);
 document.querySelector("#trend-start-year").addEventListener("change", renderWellAnalysis);
+document.querySelector("#well-select").addEventListener("change", () => {
+  if (selectedDistrict) loadWellForDistrict(selectedDistrict, document.querySelector("#well-select").value);
+});
 document.querySelector("#target-stage").addEventListener("change", renderWhatItWouldTake);
 languageSelect.addEventListener("change", () => {
   language = languageSelect.value;
@@ -846,7 +844,6 @@ async function startDashboard() {
       wellTrendError = true;
     }
     renderDataSummary();
-    renderWellComparison();
     dataError.hidden = true;
   } catch (error) {
     console.error(error);

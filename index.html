@@ -66,6 +66,8 @@
       <div class="section-heading">
         <div><p class="section-kicker" data-i18n="wellKicker">MONITORING WELL</p><h2 id="well-title" data-i18n="wellTitle">Groundwater level (monitoring well)</h2></div>
       </div>
+      <p class="well-data-caveat" data-i18n="wellDistrictCaveat">These are readings from one station, not a district average or the district extraction rate. Some station-to-district matches are inferred and not yet verified.</p>
+      <label class="field well-select-field" id="well-select-wrap" for="well-select" hidden><span data-i18n="wellSelectLabel">Monitoring station</span><select id="well-select"></select></label>
       <p class="well-status" id="well-status" role="status" data-i18n="wellLoading" hidden>Loading monitoring well data…</p>
       <p class="well-error" id="well-error" role="alert" hidden></p>
       <p class="well-status" id="well-missing" data-i18n="noMonitoringWell" hidden>No monitoring well loaded for this district.</p>
@@ -81,8 +83,8 @@
         </dl>
         <div class="well-controls">
           <div class="well-control-group">
-            <label class="well-control" for="critical-depth"><span data-i18n="criticalDepthLabel">Critical depth (m)</span><input id="critical-depth" type="number" min="0" step="1"></label>
-            <p class="well-assumption" data-i18n="criticalDepthAssumption">This is an assumption chosen by this project, not an official threshold.</p>
+            <label class="well-control" for="critical-depth"><span data-i18n="referenceDepthLabel">Reference depth (m)</span><input id="critical-depth" type="number" min="0" step="1"></label>
+            <p class="well-assumption" data-i18n="referenceDepthAssumption">Optional comparison line chosen by this project, not an official or district-wide threshold.</p>
           </div>
           <div class="well-control-group"><label class="well-control" for="trend-start-year"><span data-i18n="trendStartLabel">Trend start year</span><select id="trend-start-year"></select></label></div>
         </div>
@@ -90,7 +92,7 @@
         <div class="well-results">
           <div><span data-i18n="trendSlopeLabel">Slope</span><strong id="trend-slope">—</strong><small class="well-result-hint" data-i18n="slopeHint">positive = water table getting deeper</small></div>
           <div><span data-i18n="trendR2Label">R2</span><strong id="trend-r2">—</strong></div>
-          <div><span data-i18n="criticalYearLabel">Predicted critical year</span><strong id="critical-year">—</strong><small class="well-result-hint" id="critical-year-detail"></small></div>
+          <div><span data-i18n="referenceDepthCrossingYear">Estimated crossing year (trend only)</span><strong id="critical-year">—</strong><small class="well-result-hint" id="critical-year-detail"></small></div>
         </div>
         <p class="well-trend-range" id="well-trend-range"></p>
         <div class="well-chart-wrap"><canvas id="well-chart" aria-describedby="well-title" data-i18n="wellChartAccessibleLabel">Observed groundwater depth and fitted trend</canvas><p id="well-chart-fallback" class="chart-fallback" data-i18n="chartUnavailable" hidden>Chart library could not be loaded.</p></div>
@@ -142,15 +144,6 @@
       </section>
     </div>
 
-    <section class="table-panel well-comparison-panel" aria-labelledby="well-comparison-title">
-      <div class="section-heading"><div><p class="section-kicker" data-i18n="wellComparisonKicker">MONITORING WELL TRENDS</p><h2 id="well-comparison-title" data-i18n="wellComparisonTitle">Well comparison</h2></div></div>
-      <p class="well-comparison-error" id="well-comparison-error" role="status" hidden></p>
-      <div class="well-comparison-wrap"><table class="well-comparison-table">
-        <thead><tr><th scope="col" data-i18n="districtColumn">District</th><th scope="col" data-i18n="wellLabel">Well</th><th scope="col" data-i18n="dataRange">Data range</th><th scope="col" data-i18n="trendSlopeLabel">Slope (m/year)</th><th scope="col" data-i18n="trendR2Label">R2</th><th scope="col" data-i18n="trendMessageHeader">Trend</th></tr></thead>
-        <tbody id="well-comparison-rows"></tbody>
-      </table></div>
-    </section>
-
     <section class="read-care-panel" aria-labelledby="read-care-title">
       <div class="section-heading"><div><p class="section-kicker" data-i18n="careKicker">INTERPRET WITH CARE</p><h2 id="read-care-title" data-i18n="readCareTitle">Read with care</h2></div></div>
       <ul class="read-care-list"><li data-i18n="careDistrictAverages">These are district-level averages and can hide stressed talukas.</li><li data-i18n="careScenario">The scenario assumes extraction grows at a constant rate and extractable resource stays the same.</li><li data-i18n="careAssessment">This is a CGWB assessment for the stated year and may have changed since.</li><li data-i18n="careRainfall">Rainfall is the figure reported in the same assessment table.</li></ul>
@@ -162,11 +155,12 @@
         <li data-i18n="howDataSource"></li>
         <li data-i18n="howStageMeaning"></li>
         <li data-i18n="howWellGraph"></li>
+        <li data-i18n="howWellDifference"></li>
         <li data-i18n="howTrendMeaning"></li>
         <li data-i18n="howScenarioMeaning"></li>
       </ol>
       <div class="how-limitations"><h3 data-i18n="whatSiteCanTellTitle">What this site can and cannot tell you</h3>
-        <ul><li data-i18n="howLimitOneWell"></li><li data-i18n="howLimitScenario"></li><li data-i18n="howLimitCriticalDepth"></li><li data-i18n="howLimitDistrictAverage"></li></ul>
+        <ul><li data-i18n="howLimitOneWell"></li><li data-i18n="howLimitScenario"></li><li data-i18n="howLimitReferenceDepth"></li><li data-i18n="howLimitDistrictAverage"></li></ul>
       </div>
     </section>
   </main>

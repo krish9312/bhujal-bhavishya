@@ -1,0 +1,3380 @@
+{
+  "eligibility": "At least 8 spring-season annual points in station_trends.csv; well_depth greater than 1 metre; coordinates within a Gujarat district.",
+  "stations": [
+    {
+      "station_code": "223830072125001",
+      "district": "Ahmedabad",
+      "label": "Bagodara_Pz_I"
+    },
+    {
+      "station_code": "232200071580001",
+      "district": "Ahmedabad",
+      "label": "Dalod"
+    },
+    {
+      "station_code": "222230071591001",
+      "district": "Ahmedabad",
+      "label": "Dhandhuka1"
+    },
+    {
+      "station_code": "231620072033001",
+      "district": "Ahmedabad",
+      "label": "Endla"
+    },
+    {
+      "station_code": "222130072100001",
+      "district": "Ahmedabad",
+      "label": "Gamph"
+    },
+    {
+      "station_code": "230520072010001",
+      "district": "Ahmedabad",
+      "label": "Hansalpur_Pz-I"
+    },
+    {
+      "station_code": "230520072010003",
+      "district": "Ahmedabad",
+      "label": "Hansalpur_Pz-III"
+    },
+    {
+      "station_code": "225915072121501",
+      "district": "Ahmedabad",
+      "label": "Jholapur_Pz_I"
+    },
+    {
+      "station_code": "225400072010001",
+      "district": "Ahmedabad",
+      "label": "Kumarkhan"
+    },
+    {
+      "station_code": "231630071550001",
+      "district": "Ahmedabad",
+      "label": "Mandal2"
+    },
+    {
+      "station_code": "221356072104401",
+      "district": "Ahmedabad",
+      "label": "Pachcham_Pz"
+    },
+    {
+      "station_code": "230452072304901",
+      "district": "Ahmedabad",
+      "label": "Sola(HC)_Pz_I"
+    },
+    {
+      "station_code": "221745071565001",
+      "district": "Ahmedabad",
+      "label": "Tagadi1"
+    },
+    {
+      "station_code": "222137071520501",
+      "district": "Ahmedabad",
+      "label": "Vagad(Repl)_Pz"
+    },
+    {
+      "station_code": "225713072365901",
+      "district": "Ahmedabad",
+      "label": "Vatwa Pz-III"
+    },
+    {
+      "station_code": "230830072020001",
+      "district": "Ahmedabad",
+      "label": "Viramgam2"
+    },
+    {
+      "station_code": "213630071133001",
+      "district": "Amreli",
+      "label": "Amreli"
+    },
+    {
+      "station_code": "213645071133001",
+      "district": "Amreli",
+      "label": "Amreli_Pz"
+    },
+    {
+      "station_code": "213845071063001",
+      "district": "Amreli",
+      "label": "Ankadia mota"
+    },
+    {
+      "station_code": "215050071174501",
+      "district": "Amreli",
+      "label": "Babra_Pz"
+    },
+    {
+      "station_code": "212845070574501",
+      "district": "Amreli",
+      "label": "Bagasara"
+    },
+    {
+      "station_code": "210630071153001",
+      "district": "Amreli",
+      "label": "Bhavardi1"
+    },
+    {
+      "station_code": "205205071214501",
+      "district": "Amreli",
+      "label": "Bherai"
+    },
+    {
+      "station_code": "212558071215001",
+      "district": "Amreli",
+      "label": "Bhuva"
+    },
+    {
+      "station_code": "212500071100001",
+      "district": "Amreli",
+      "label": "Chalala"
+    },
+    {
+      "station_code": "212315071173001",
+      "district": "Amreli",
+      "label": "Charkhadia_Pz"
+    },
+    {
+      "station_code": "214900071244501",
+      "district": "Amreli",
+      "label": "Chavand"
+    },
+    {
+      "station_code": "211935071010501",
+      "district": "Amreli",
+      "label": "Dhari_Pz"
+    },
+    {
+      "station_code": "212610071322501",
+      "district": "Amreli",
+      "label": "Fifad"
+    },
+    {
+      "station_code": "211330071244001",
+      "district": "Amreli",
+      "label": "Goradka"
+    },
+    {
+      "station_code": "213230071093001",
+      "district": "Amreli",
+      "label": "Govadka"
+    },
+    {
+      "station_code": "211400071120001",
+      "district": "Amreli",
+      "label": "Ingorala"
+    },
+    {
+      "station_code": "205200071214501",
+      "district": "Amreli",
+      "label": "Jafrabad"
+    },
+    {
+      "station_code": "212350071130001",
+      "district": "Amreli",
+      "label": "Kerala"
+    },
+    {
+      "station_code": "210900071142001",
+      "district": "Amreli",
+      "label": "Khamba"
+    },
+    {
+      "station_code": "210830071151501",
+      "district": "Amreli",
+      "label": "Khamba_Pz"
+    },
+    {
+      "station_code": "215730071121501",
+      "district": "Amreli",
+      "label": "Kotadapitha"
+    },
+    {
+      "station_code": "213945070590001",
+      "district": "Amreli",
+      "label": "Kunkavav"
+    },
+    {
+      "station_code": "214315071230001",
+      "district": "Amreli",
+      "label": "Lathi"
+    },
+    {
+      "station_code": "213205071224501",
+      "district": "Amreli",
+      "label": "Liliya_Pz_I"
+    },
+    {
+      "station_code": "213730071234501",
+      "district": "Amreli",
+      "label": "Luvariya"
+    },
+    {
+      "station_code": "210600071350001",
+      "district": "Amreli",
+      "label": "Mandal"
+    },
+    {
+      "station_code": "212234071070701",
+      "district": "Amreli",
+      "label": "Morjhar"
+    },
+    {
+      "station_code": "205530071211501",
+      "district": "Amreli",
+      "label": "Nageshri"
+    },
+    {
+      "station_code": "212300071280001",
+      "district": "Amreli",
+      "label": "Piyava"
+    },
+    {
+      "station_code": "213130071213001",
+      "district": "Amreli",
+      "label": "Punjapadar"
+    },
+    {
+      "station_code": "214330071280001",
+      "district": "Amreli",
+      "label": "Tajpur"
+    },
+    {
+      "station_code": "210100071165001",
+      "district": "Amreli",
+      "label": "Trakuda"
+    },
+    {
+      "station_code": "215500071130001",
+      "district": "Amreli",
+      "label": "Untvad"
+    },
+    {
+      "station_code": "213500070580001",
+      "district": "Amreli",
+      "label": "Vaghania juna"
+    },
+    {
+      "station_code": "213115071081001",
+      "district": "Amreli",
+      "label": "Vankiya"
+    },
+    {
+      "station_code": "211400071150001",
+      "district": "Amreli",
+      "label": "Vankiya1"
+    },
+    {
+      "station_code": "210045071323001",
+      "district": "Amreli",
+      "label": "Victor"
+    },
+    {
+      "station_code": "223430072582001",
+      "district": "Anand",
+      "label": "Anand"
+    },
+    {
+      "station_code": "222300073003001",
+      "district": "Anand",
+      "label": "Anklav2"
+    },
+    {
+      "station_code": "222235072595001",
+      "district": "Anand",
+      "label": "Anklav_Pz_I"
+    },
+    {
+      "station_code": "222235072595002",
+      "district": "Anand",
+      "label": "Anklav_Pz_II"
+    },
+    {
+      "station_code": "223230072490001",
+      "district": "Anand",
+      "label": "Bandhani"
+    },
+    {
+      "station_code": "222120072535001",
+      "district": "Anand",
+      "label": "Bhadran"
+    },
+    {
+      "station_code": "222435072540501",
+      "district": "Anand",
+      "label": "Borsad I"
+    },
+    {
+      "station_code": "222435072540502",
+      "district": "Anand",
+      "label": "Borsad_Pz_II"
+    },
+    {
+      "station_code": "221630072460001",
+      "district": "Anand",
+      "label": "Dali"
+    },
+    {
+      "station_code": "222730072481001",
+      "district": "Anand",
+      "label": "Davalpura_Pz"
+    },
+    {
+      "station_code": "222515072474001",
+      "district": "Anand",
+      "label": "Dharmaj"
+    },
+    {
+      "station_code": "224130073031501",
+      "district": "Anand",
+      "label": "Ghora"
+    },
+    {
+      "station_code": "222415072402001",
+      "district": "Anand",
+      "label": "Hariyan_Pz"
+    },
+    {
+      "station_code": "222030072390001",
+      "district": "Anand",
+      "label": "Kansari1"
+    },
+    {
+      "station_code": "221740072472501",
+      "district": "Anand",
+      "label": "Kathana_Pz_I"
+    },
+    {
+      "station_code": "222500072363001",
+      "district": "Anand",
+      "label": "Laxmipura"
+    },
+    {
+      "station_code": "222830072480001",
+      "district": "Anand",
+      "label": "Petlad_Pz_I"
+    },
+    {
+      "station_code": "222830072480002",
+      "district": "Anand",
+      "label": "Petlad_Pz_II"
+    },
+    {
+      "station_code": "222045072500001",
+      "district": "Anand",
+      "label": "Ras"
+    },
+    {
+      "station_code": "222910072394001",
+      "district": "Anand",
+      "label": "Tarapur Pz-I"
+    },
+    {
+      "station_code": "222910072394002",
+      "district": "Anand",
+      "label": "Tarapur Pz-II"
+    },
+    {
+      "station_code": "223040072585501",
+      "district": "Anand",
+      "label": "Walmi_ I"
+    },
+    {
+      "station_code": "223030072585601",
+      "district": "Anand",
+      "label": "Walmi_ II"
+    },
+    {
+      "station_code": "231629073123001",
+      "district": "Arvalli",
+      "label": "Alwakampa"
+    },
+    {
+      "station_code": "231300073134501",
+      "district": "Arvalli",
+      "label": "Bayad_Pz"
+    },
+    {
+      "station_code": "230730073123001",
+      "district": "Arvalli",
+      "label": "Boral"
+    },
+    {
+      "station_code": "232100073120002",
+      "district": "Arvalli",
+      "label": "Dhansura1"
+    },
+    {
+      "station_code": "232430073273001",
+      "district": "Arvalli",
+      "label": "Hamirpur"
+    },
+    {
+      "station_code": "232000073180001",
+      "district": "Arvalli",
+      "label": "Karanpur"
+    },
+    {
+      "station_code": "233820073221001",
+      "district": "Arvalli",
+      "label": "Kuski_Pz"
+    },
+    {
+      "station_code": "232030073280501",
+      "district": "Arvalli",
+      "label": "Malpur_Pz"
+    },
+    {
+      "station_code": "232745073183001",
+      "district": "Arvalli",
+      "label": "Modasa"
+    },
+    {
+      "station_code": "231030073201501",
+      "district": "Arvalli",
+      "label": "Sathamba"
+    },
+    {
+      "station_code": "234110073220001",
+      "district": "Arvalli",
+      "label": "Shamlaji"
+    },
+    {
+      "station_code": "234750073131501",
+      "district": "Arvalli",
+      "label": "Vejpur_Pz"
+    },
+    {
+      "station_code": "242010072505001",
+      "district": "Banaskantha",
+      "label": "Ambaji_Pz"
+    },
+    {
+      "station_code": "242420072383001",
+      "district": "Banaskantha",
+      "label": "Amirgadh"
+    },
+    {
+      "station_code": "241350071544401",
+      "district": "Banaskantha",
+      "label": "Balodhar_Pz-I"
+    },
+    {
+      "station_code": "240335071354603",
+      "district": "Banaskantha",
+      "label": "Bhabhar  iii"
+    },
+    {
+      "station_code": "243145071323001",
+      "district": "Banaskantha",
+      "label": "Bharol1"
+    },
+    {
+      "station_code": "241620071391701",
+      "district": "Banaskantha",
+      "label": "Biyok_Pz-II"
+    },
+    {
+      "station_code": "241120072455501",
+      "district": "Banaskantha",
+      "label": "Danta"
+    },
+    {
+      "station_code": "241639072154101",
+      "district": "Banaskantha",
+      "label": "Dantiwada"
+    },
+    {
+      "station_code": "243022072014501",
+      "district": "Banaskantha",
+      "label": "Dhanera Pz-I"
+    },
+    {
+      "station_code": "241750072565001",
+      "district": "Banaskantha",
+      "label": "Ganapipli"
+    },
+    {
+      "station_code": "242610072215501",
+      "district": "Banaskantha",
+      "label": "Gangodra"
+    },
+    {
+      "station_code": "242045072321501",
+      "district": "Banaskantha",
+      "label": "Iqbalgarh"
+    },
+    {
+      "station_code": "242915072211001",
+      "district": "Banaskantha",
+      "label": "Jhat"
+    },
+    {
+      "station_code": "243930071460001",
+      "district": "Banaskantha",
+      "label": "Khoda"
+    },
+    {
+      "station_code": "242340072374001",
+      "district": "Banaskantha",
+      "label": "Kidotar"
+    },
+    {
+      "station_code": "240143072225101",
+      "district": "Banaskantha",
+      "label": "Mahi_Pz"
+    },
+    {
+      "station_code": "242350072170501",
+      "district": "Banaskantha",
+      "label": "Meda"
+    },
+    {
+      "station_code": "241000072434001",
+      "district": "Banaskantha",
+      "label": "Mohabbat gadh"
+    },
+    {
+      "station_code": "243659071381901",
+      "district": "Banaskantha",
+      "label": "Naroli Pzi"
+    },
+    {
+      "station_code": "243659071381902",
+      "district": "Banaskantha",
+      "label": "Naroli Pzii"
+    },
+    {
+      "station_code": "243659071381903",
+      "district": "Banaskantha",
+      "label": "Naroli Pziii"
+    },
+    {
+      "station_code": "241140072260001",
+      "district": "Banaskantha",
+      "label": "Palanpur2"
+    },
+    {
+      "station_code": "241020072270001",
+      "district": "Banaskantha",
+      "label": "Palanpur_Pz"
+    },
+    {
+      "station_code": "242945071501002",
+      "district": "Banaskantha",
+      "label": "Rah_Pz I"
+    },
+    {
+      "station_code": "242945071501003",
+      "district": "Banaskantha",
+      "label": "Rah_Pz II"
+    },
+    {
+      "station_code": "241030072444501",
+      "district": "Banaskantha",
+      "label": "Ratanpur2"
+    },
+    {
+      "station_code": "242405072174501",
+      "district": "Banaskantha",
+      "label": "Sodapur"
+    },
+    {
+      "station_code": "242306071371001",
+      "district": "Banaskantha",
+      "label": "Tharad Pzi"
+    },
+    {
+      "station_code": "242306071371002",
+      "district": "Banaskantha",
+      "label": "Tharad Pzii"
+    },
+    {
+      "station_code": "242306071371003",
+      "district": "Banaskantha",
+      "label": "Tharad Pziii"
+    },
+    {
+      "station_code": "242140071304001",
+      "district": "Banaskantha",
+      "label": "Vav    ii"
+    },
+    {
+      "station_code": "242130071303001",
+      "district": "Banaskantha",
+      "label": "Vav   i"
+    },
+    {
+      "station_code": "213645073260701",
+      "district": "Bharuch",
+      "label": "Arethi"
+    },
+    {
+      "station_code": "214200073001501",
+      "district": "Bharuch",
+      "label": "Bharuch"
+    },
+    {
+      "station_code": "214230073000001",
+      "district": "Bharuch",
+      "label": "Bharuch I"
+    },
+    {
+      "station_code": "214330072450001",
+      "district": "Bharuch",
+      "label": "Bhensli"
+    },
+    {
+      "station_code": "221105072355001",
+      "district": "Bharuch",
+      "label": "Dahegam"
+    },
+    {
+      "station_code": "213500072483001",
+      "district": "Bharuch",
+      "label": "Hansot"
+    },
+    {
+      "station_code": "212700072480001",
+      "district": "Bharuch",
+      "label": "Ilav"
+    },
+    {
+      "station_code": "220310072482001",
+      "district": "Bharuch",
+      "label": "Jambusar"
+    },
+    {
+      "station_code": "212930072423001",
+      "district": "Bharuch",
+      "label": "Jetpur1"
+    },
+    {
+      "station_code": "214030072583001",
+      "district": "Bharuch",
+      "label": "Juna borbhata"
+    },
+    {
+      "station_code": "214545072382001",
+      "district": "Bharuch",
+      "label": "Kadodara"
+    },
+    {
+      "station_code": "214100072490001",
+      "district": "Bharuch",
+      "label": "Kaswa"
+    },
+    {
+      "station_code": "221137072382201",
+      "district": "Bharuch",
+      "label": "Kavi"
+    },
+    {
+      "station_code": "213450073040501",
+      "district": "Bharuch",
+      "label": "Kondh"
+    },
+    {
+      "station_code": "214030072333001",
+      "district": "Bharuch",
+      "label": "Luhara"
+    },
+    {
+      "station_code": "213200073171501",
+      "district": "Bharuch",
+      "label": "Mokhdi"
+    },
+    {
+      "station_code": "213320072531501",
+      "district": "Bharuch",
+      "label": "Motwan"
+    },
+    {
+      "station_code": "214228072495001",
+      "district": "Bharuch",
+      "label": "Navetha"
+    },
+    {
+      "station_code": "213830073220002",
+      "district": "Bharuch",
+      "label": "Netrang(Rep)_Pz"
+    },
+    {
+      "station_code": "213800073220001",
+      "district": "Bharuch",
+      "label": "Netrang1"
+    },
+    {
+      "station_code": "214730072400501",
+      "district": "Bharuch",
+      "label": "Nirnavi"
+    },
+    {
+      "station_code": "213215072583001",
+      "district": "Bharuch",
+      "label": "Panoli"
+    },
+    {
+      "station_code": "213115072491501",
+      "district": "Bharuch",
+      "label": "Raymal"
+    },
+    {
+      "station_code": "215500072473001",
+      "district": "Bharuch",
+      "label": "Roja tankaria"
+    },
+    {
+      "station_code": "213700072552501",
+      "district": "Bharuch",
+      "label": "Sajod"
+    },
+    {
+      "station_code": "220930072453001",
+      "district": "Bharuch",
+      "label": "Sarod"
+    },
+    {
+      "station_code": "215930072403001",
+      "district": "Bharuch",
+      "label": "Tankari"
+    },
+    {
+      "station_code": "213530072493001",
+      "district": "Bharuch",
+      "label": "Utraj"
+    },
+    {
+      "station_code": "215737071531101",
+      "district": "Bhavnagar",
+      "label": "Ayodhayapuram"
+    },
+    {
+      "station_code": "214600072090001",
+      "district": "Bhavnagar",
+      "label": "Bhavnagar1"
+    },
+    {
+      "station_code": "214130072093001",
+      "district": "Bhavnagar",
+      "label": "Bhudel"
+    },
+    {
+      "station_code": "214046072143901",
+      "district": "Bhavnagar",
+      "label": "Bhumbhali"
+    },
+    {
+      "station_code": "214450071420001",
+      "district": "Bhavnagar",
+      "label": "Bhutia"
+    },
+    {
+      "station_code": "211315071570001",
+      "district": "Bhavnagar",
+      "label": "Datha"
+    },
+    {
+      "station_code": "210815071393001",
+      "district": "Bhavnagar",
+      "label": "Dudhala"
+    },
+    {
+      "station_code": "213235071335501",
+      "district": "Bhavnagar",
+      "label": "Gariyadhar"
+    },
+    {
+      "station_code": "214100072164501",
+      "district": "Bhavnagar",
+      "label": "Ghogha1"
+    },
+    {
+      "station_code": "214507072015201",
+      "district": "Bhavnagar",
+      "label": "Kardej"
+    },
+    {
+      "station_code": "213815071420001",
+      "district": "Bhavnagar",
+      "label": "Khijadiya"
+    },
+    {
+      "station_code": "211250071530001",
+      "district": "Bhavnagar",
+      "label": "Longadi"
+    },
+    {
+      "station_code": "220550071535001",
+      "district": "Bhavnagar",
+      "label": "Lonjdhara"
+    },
+    {
+      "station_code": "210545071460001",
+      "district": "Bhavnagar",
+      "label": "Mahuva1"
+    },
+    {
+      "station_code": "211150071330001",
+      "district": "Bhavnagar",
+      "label": "Motivadal"
+    },
+    {
+      "station_code": "213130071492501",
+      "district": "Bhavnagar",
+      "label": "Palitana1"
+    },
+    {
+      "station_code": "213300071431501",
+      "district": "Bhavnagar",
+      "label": "Panchpipla"
+    },
+    {
+      "station_code": "220430071533001",
+      "district": "Bhavnagar",
+      "label": "Panvi1"
+    },
+    {
+      "station_code": "212530071544501",
+      "district": "Bhavnagar",
+      "label": "Sajnasar"
+    },
+    {
+      "station_code": "212630071501501",
+      "district": "Bhavnagar",
+      "label": "Satanes"
+    },
+    {
+      "station_code": "212200072010001",
+      "district": "Bhavnagar",
+      "label": "Talaja2"
+    },
+    {
+      "station_code": "214954071455801",
+      "district": "Bhavnagar",
+      "label": "Timbi2"
+    },
+    {
+      "station_code": "215050071483001",
+      "district": "Bhavnagar",
+      "label": "Umrala"
+    },
+    {
+      "station_code": "215300071523001",
+      "district": "Bhavnagar",
+      "label": "Vallbhipur"
+    },
+    {
+      "station_code": "220900071533001",
+      "district": "Botad",
+      "label": "Barvala"
+    },
+    {
+      "station_code": "214800071303001",
+      "district": "Botad",
+      "label": "Dhasa"
+    },
+    {
+      "station_code": "215805071345501",
+      "district": "Botad",
+      "label": "Gadhada1"
+    },
+    {
+      "station_code": "215800071344501",
+      "district": "Botad",
+      "label": "Gadhada2"
+    },
+    {
+      "station_code": "221610071420001",
+      "district": "Botad",
+      "label": "Kundali"
+    },
+    {
+      "station_code": "220105071420001",
+      "district": "Botad",
+      "label": "Ningala"
+    },
+    {
+      "station_code": "221830071413001",
+      "district": "Botad",
+      "label": "Rajpada"
+    },
+    {
+      "station_code": "220330071380001",
+      "district": "Botad",
+      "label": "Tatam"
+    },
+    {
+      "station_code": "221500073430001",
+      "district": "Chhota Udaipur",
+      "label": "Alladpur"
+    },
+    {
+      "station_code": "222300073560001",
+      "district": "Chhota Udaipur",
+      "label": "Asala"
+    },
+    {
+      "station_code": "220815074003001",
+      "district": "Chhota Udaipur",
+      "label": "Baladgam"
+    },
+    {
+      "station_code": "221200073540001",
+      "district": "Chhota Udaipur",
+      "label": "Bhindol"
+    },
+    {
+      "station_code": "221615073430001",
+      "district": "Chhota Udaipur",
+      "label": "Bodeli"
+    },
+    {
+      "station_code": "221115073591501",
+      "district": "Chhota Udaipur",
+      "label": "Chavaria"
+    },
+    {
+      "station_code": "221830074010002",
+      "district": "Chhota Udaipur",
+      "label": "Chhota udepur"
+    },
+    {
+      "station_code": "220600073590001",
+      "district": "Chhota Udaipur",
+      "label": "Devat (thadgam)"
+    },
+    {
+      "station_code": "222200074123001",
+      "district": "Chhota Udaipur",
+      "label": "Ferkuva"
+    },
+    {
+      "station_code": "222200074043001",
+      "district": "Chhota Udaipur",
+      "label": "Ghamodi"
+    },
+    {
+      "station_code": "221240073442901",
+      "district": "Chhota Udaipur",
+      "label": "Govindpura"
+    },
+    {
+      "station_code": "222630073574501",
+      "district": "Chhota Udaipur",
+      "label": "Jojh"
+    },
+    {
+      "station_code": "223100073563001",
+      "district": "Chhota Udaipur",
+      "label": "Kevadi"
+    },
+    {
+      "station_code": "220040074050001",
+      "district": "Chhota Udaipur",
+      "label": "Moti chikhali"
+    },
+    {
+      "station_code": "221200074023001",
+      "district": "Chhota Udaipur",
+      "label": "Panwad"
+    },
+    {
+      "station_code": "222030073500001",
+      "district": "Chhota Udaipur",
+      "label": "Pavi"
+    },
+    {
+      "station_code": "221515073383001",
+      "district": "Chhota Udaipur",
+      "label": "Pitha"
+    },
+    {
+      "station_code": "220330074010001",
+      "district": "Chhota Udaipur",
+      "label": "Saidivasana"
+    },
+    {
+      "station_code": "220215073531501",
+      "district": "Chhota Udaipur",
+      "label": "Sengpur"
+    },
+    {
+      "station_code": "220400074083001",
+      "district": "Chhota Udaipur",
+      "label": "Vagudan"
+    },
+    {
+      "station_code": "225015074040001",
+      "district": "Dahod",
+      "label": "Dadhela"
+    },
+    {
+      "station_code": "225025074154501",
+      "district": "Dahod",
+      "label": "Dahod"
+    },
+    {
+      "station_code": "224930074140001",
+      "district": "Dahod",
+      "label": "Dahod2"
+    },
+    {
+      "station_code": "224200073545001",
+      "district": "Dahod",
+      "label": "Devgadh Baria"
+    },
+    {
+      "station_code": "224200073550001",
+      "district": "Dahod",
+      "label": "Devgadh bariya"
+    },
+    {
+      "station_code": "223800074061501",
+      "district": "Dahod",
+      "label": "Dhanpur"
+    },
+    {
+      "station_code": "231515074014501",
+      "district": "Dahod",
+      "label": "Fatepura(Karodia)"
+    },
+    {
+      "station_code": "224050074184501",
+      "district": "Dahod",
+      "label": "Garbara"
+    },
+    {
+      "station_code": "230535074085001",
+      "district": "Dahod",
+      "label": "Jhalod"
+    },
+    {
+      "station_code": "230530074080001",
+      "district": "Dahod",
+      "label": "Jhalod1"
+    },
+    {
+      "station_code": "223450074065001",
+      "district": "Dahod",
+      "label": "Kanjetha"
+    },
+    {
+      "station_code": "224215073501501",
+      "district": "Dahod",
+      "label": "Khandania"
+    },
+    {
+      "station_code": "230015074093001",
+      "district": "Dahod",
+      "label": "Limbdi2"
+    },
+    {
+      "station_code": "224950073591001",
+      "district": "Dahod",
+      "label": "Limkheda"
+    },
+    {
+      "station_code": "225600074120001",
+      "district": "Dahod",
+      "label": "Mirakhedi"
+    },
+    {
+      "station_code": "224345074183001",
+      "district": "Dahod",
+      "label": "Panchwada"
+    },
+    {
+      "station_code": "223850074052501",
+      "district": "Dahod",
+      "label": "Pipero"
+    },
+    {
+      "station_code": "230900074030001",
+      "district": "Dahod",
+      "label": "Sukhsar"
+    },
+    {
+      "station_code": "223615074021501",
+      "district": "Dahod",
+      "label": "Tokarba"
+    },
+    {
+      "station_code": "224800074163001",
+      "district": "Dahod",
+      "label": "Varamkheda"
+    },
+    {
+      "station_code": "204530073410001",
+      "district": "Dang",
+      "label": "Ahwa1"
+    },
+    {
+      "station_code": "204532073411001",
+      "district": "Dang",
+      "label": "Ahwa_Pz"
+    },
+    {
+      "station_code": "203824073412901",
+      "district": "Dang",
+      "label": "Bari Pada"
+    },
+    {
+      "station_code": "204839073301101",
+      "district": "Dang",
+      "label": "Bori Gaotha 1"
+    },
+    {
+      "station_code": "203930073411501",
+      "district": "Dang",
+      "label": "Chikhli"
+    },
+    {
+      "station_code": "204830073331001",
+      "district": "Dang",
+      "label": "Chinchnogaotha"
+    },
+    {
+      "station_code": "203815073463001",
+      "district": "Dang",
+      "label": "Chinchpada"
+    },
+    {
+      "station_code": "203845073473001",
+      "district": "Dang",
+      "label": "Dhumkal"
+    },
+    {
+      "station_code": "204800073441501",
+      "district": "Dang",
+      "label": "Ghubita"
+    },
+    {
+      "station_code": "203800073444501",
+      "district": "Dang",
+      "label": "Jakana"
+    },
+    {
+      "station_code": "205515073345001",
+      "district": "Dang",
+      "label": "Kalibel"
+    },
+    {
+      "station_code": "205500073404501",
+      "district": "Dang",
+      "label": "Mahal"
+    },
+    {
+      "station_code": "203600073444501",
+      "district": "Dang",
+      "label": "Malegaon"
+    },
+    {
+      "station_code": "204815073364501",
+      "district": "Dang",
+      "label": "Nadak khadi"
+    },
+    {
+      "station_code": "204200073350001",
+      "district": "Dang",
+      "label": "Nana pada"
+    },
+    {
+      "station_code": "204310073332501",
+      "district": "Dang",
+      "label": "Sakarpatal"
+    },
+    {
+      "station_code": "205200073370001",
+      "district": "Dang",
+      "label": "Sodmal"
+    },
+    {
+      "station_code": "205520073345001",
+      "district": "Dang",
+      "label": "Subir"
+    },
+    {
+      "station_code": "204100073433001",
+      "district": "Dang",
+      "label": "Umberpada"
+    },
+    {
+      "station_code": "204550073301601",
+      "district": "Dang",
+      "label": "Vaghai"
+    },
+    {
+      "station_code": "205242073310601",
+      "district": "Dang",
+      "label": "Vazat Amba"
+    },
+    {
+      "station_code": "215459069512901",
+      "district": "Devbhumi Dwarka",
+      "label": "Ambardi"
+    },
+    {
+      "station_code": "220445069344501",
+      "district": "Devbhumi Dwarka",
+      "label": "Bhadthar"
+    },
+    {
+      "station_code": "220530069180501",
+      "district": "Devbhumi Dwarka",
+      "label": "Bhatia"
+    },
+    {
+      "station_code": "220540069160001",
+      "district": "Devbhumi Dwarka",
+      "label": "Bhatiya"
+    },
+    {
+      "station_code": "215930069144502",
+      "district": "Devbhumi Dwarka",
+      "label": "Bhogat1"
+    },
+    {
+      "station_code": "221445068573001",
+      "district": "Devbhumi Dwarka",
+      "label": "Dwarka"
+    },
+    {
+      "station_code": "221015069220001",
+      "district": "Devbhumi Dwarka",
+      "label": "Juvanpur"
+    },
+    {
+      "station_code": "222000069423001",
+      "district": "Devbhumi Dwarka",
+      "label": "Kajuda"
+    },
+    {
+      "station_code": "220100069233001",
+      "district": "Devbhumi Dwarka",
+      "label": "Kalyanpur2"
+    },
+    {
+      "station_code": "221235069384501",
+      "district": "Devbhumi Dwarka",
+      "label": "Khambhaliya"
+    },
+    {
+      "station_code": "215845069360001",
+      "district": "Devbhumi Dwarka",
+      "label": "Khirsara"
+    },
+    {
+      "station_code": "221205069350001",
+      "district": "Devbhumi Dwarka",
+      "label": "Kuvadia"
+    },
+    {
+      "station_code": "222200068590001",
+      "district": "Devbhumi Dwarka",
+      "label": "Mojap"
+    },
+    {
+      "station_code": "215430069494501",
+      "district": "Devbhumi Dwarka",
+      "label": "Mota kalawad"
+    },
+    {
+      "station_code": "221450069153002",
+      "district": "Devbhumi Dwarka",
+      "label": "Pindara1"
+    },
+    {
+      "station_code": "215547069293101",
+      "district": "Devbhumi Dwarka",
+      "label": "Raval"
+    },
+    {
+      "station_code": "221820069361501",
+      "district": "Devbhumi Dwarka",
+      "label": "Salaya"
+    },
+    {
+      "station_code": "222230069061502",
+      "district": "Devbhumi Dwarka",
+      "label": "Samrasar1"
+    },
+    {
+      "station_code": "221230069300001",
+      "district": "Devbhumi Dwarka",
+      "label": "Vadtara"
+    },
+    {
+      "station_code": "221730068580001",
+      "district": "Devbhumi Dwarka",
+      "label": "Varwada"
+    },
+    {
+      "station_code": "220900069360001",
+      "district": "Devbhumi Dwarka",
+      "label": "Vinjhalpur"
+    },
+    {
+      "station_code": "231030072333001",
+      "district": "Gandhinagar",
+      "label": "Adalaj_Pz_I"
+    },
+    {
+      "station_code": "231030072333002",
+      "district": "Gandhinagar",
+      "label": "Adalaj_Pz_II"
+    },
+    {
+      "station_code": "232225072421801",
+      "district": "Gandhinagar",
+      "label": "Amrapur Pzi"
+    },
+    {
+      "station_code": "232225072421802",
+      "district": "Gandhinagar",
+      "label": "Amrapur Pzii"
+    },
+    {
+      "station_code": "232854072390602",
+      "district": "Gandhinagar",
+      "label": "Charada Pz -II"
+    },
+    {
+      "station_code": "232854072390601",
+      "district": "Gandhinagar",
+      "label": "Charada_Pz_I"
+    },
+    {
+      "station_code": "231015072503001",
+      "district": "Gandhinagar",
+      "label": "Dahegam I"
+    },
+    {
+      "station_code": "231405072383002",
+      "district": "Gandhinagar",
+      "label": "Gandhinagar  II"
+    },
+    {
+      "station_code": "231530072282003",
+      "district": "Gandhinagar",
+      "label": "Kalol(Nest)_Pz_III"
+    },
+    {
+      "station_code": "231125072331001",
+      "district": "Gandhinagar",
+      "label": "Kasturinagar(IFFCO)"
+    },
+    {
+      "station_code": "232523072395401",
+      "district": "Gandhinagar",
+      "label": "Mansa"
+    },
+    {
+      "station_code": "231955072340001",
+      "district": "Gandhinagar",
+      "label": "Nardipur  i"
+    },
+    {
+      "station_code": "231045072503001",
+      "district": "Gandhinagar",
+      "label": "Paliya"
+    },
+    {
+      "station_code": "231602072402301",
+      "district": "Gandhinagar",
+      "label": "Pethapur_Pz-I"
+    },
+    {
+      "station_code": "231602072402302",
+      "district": "Gandhinagar",
+      "label": "Pethapur_Pz-II"
+    },
+    {
+      "station_code": "231750072342601",
+      "district": "Gandhinagar",
+      "label": "Sardhav Pz -I"
+    },
+    {
+      "station_code": "231750072342602",
+      "district": "Gandhinagar",
+      "label": "Sardhav Pz-II"
+    },
+    {
+      "station_code": "231140072340001",
+      "district": "Gandhinagar",
+      "label": "Serthapara1"
+    },
+    {
+      "station_code": "205407070310501",
+      "district": "Gir Somnath",
+      "label": "Ajotha"
+    },
+    {
+      "station_code": "205839070363301",
+      "district": "Gir Somnath",
+      "label": "Bhim Deval"
+    },
+    {
+      "station_code": "205730071041501",
+      "district": "Gir Somnath",
+      "label": "Dhokadva"
+    },
+    {
+      "station_code": "205130071100001",
+      "district": "Gir Somnath",
+      "label": "Gangda_Pz"
+    },
+    {
+      "station_code": "205530070550001",
+      "district": "Gir Somnath",
+      "label": "Girgadhada"
+    },
+    {
+      "station_code": "205645070234501",
+      "district": "Gir Somnath",
+      "label": "Govindpura2"
+    },
+    {
+      "station_code": "210145070363001",
+      "district": "Gir Somnath",
+      "label": "Jambur[madhapar"
+    },
+    {
+      "station_code": "205900070454501",
+      "district": "Gir Somnath",
+      "label": "Jamvala1"
+    },
+    {
+      "station_code": "205251070590301",
+      "district": "Gir Somnath",
+      "label": "Jargla Jargali"
+    },
+    {
+      "station_code": "204747070563101",
+      "district": "Gir Somnath",
+      "label": "Kesariya1"
+    },
+    {
+      "station_code": "204800070413001",
+      "district": "Gir Somnath",
+      "label": "Kodinar"
+    },
+    {
+      "station_code": "204800070413002",
+      "district": "Gir Somnath",
+      "label": "Kodinar1"
+    },
+    {
+      "station_code": "205900070261001",
+      "district": "Gir Somnath",
+      "label": "Moraj"
+    },
+    {
+      "station_code": "205103070400901",
+      "district": "Gir Somnath",
+      "label": "Prasli"
+    },
+    {
+      "station_code": "205115071071501",
+      "district": "Gir Somnath",
+      "label": "Sametar"
+    },
+    {
+      "station_code": "210305070313001",
+      "district": "Gir Somnath",
+      "label": "Talala1"
+    },
+    {
+      "station_code": "210350070321801",
+      "district": "Gir Somnath",
+      "label": "Talala_Pz"
+    },
+    {
+      "station_code": "204930071023001",
+      "district": "Gir Somnath",
+      "label": "Una2"
+    },
+    {
+      "station_code": "215415069573001",
+      "district": "Jamnagar",
+      "label": "Balwa"
+    },
+    {
+      "station_code": "222615069540002",
+      "district": "Jamnagar",
+      "label": "Bed1"
+    },
+    {
+      "station_code": "224100070190001",
+      "district": "Jamnagar",
+      "label": "Bedanpur"
+    },
+    {
+      "station_code": "223400070250001",
+      "district": "Jamnagar",
+      "label": "Dhrol2"
+    },
+    {
+      "station_code": "224730070301501",
+      "district": "Jamnagar",
+      "label": "Dudhai2"
+    },
+    {
+      "station_code": "222700070000501",
+      "district": "Jamnagar",
+      "label": "Gordhanpur"
+    },
+    {
+      "station_code": "221615070200001",
+      "district": "Jamnagar",
+      "label": "Haripur2"
+    },
+    {
+      "station_code": "223130070121501",
+      "district": "Jamnagar",
+      "label": "Jambuda"
+    },
+    {
+      "station_code": "215420070015001",
+      "district": "Jamnagar",
+      "label": "Jamjodhpur"
+    },
+    {
+      "station_code": "222815070030001",
+      "district": "Jamnagar",
+      "label": "Jamnagar1"
+    },
+    {
+      "station_code": "222730070044501",
+      "district": "Jamnagar",
+      "label": "Jamnagar2"
+    },
+    {
+      "station_code": "221300070230001",
+      "district": "Jamnagar",
+      "label": "Kalawad"
+    },
+    {
+      "station_code": "221130069574001",
+      "district": "Jamnagar",
+      "label": "Lalpur1"
+    },
+    {
+      "station_code": "222315069520001",
+      "district": "Jamnagar",
+      "label": "Moti khavdi"
+    },
+    {
+      "station_code": "221900070155001",
+      "district": "Jamnagar",
+      "label": "Moti matli"
+    },
+    {
+      "station_code": "221130070320001",
+      "district": "Jamnagar",
+      "label": "Nikava"
+    },
+    {
+      "station_code": "220200070073001",
+      "district": "Jamnagar",
+      "label": "Seth vadala"
+    },
+    {
+      "station_code": "220630070100001",
+      "district": "Jamnagar",
+      "label": "Sumana"
+    },
+    {
+      "station_code": "220345070230001",
+      "district": "Jamnagar",
+      "label": "Toda"
+    },
+    {
+      "station_code": "221400070070001",
+      "district": "Jamnagar",
+      "label": "Vad panchasara"
+    },
+    {
+      "station_code": "222500070110001",
+      "district": "Jamnagar",
+      "label": "Vijarkha"
+    },
+    {
+      "station_code": "210450070103501",
+      "district": "Junagadh",
+      "label": "Arena"
+    },
+    {
+      "station_code": "211315070032001",
+      "district": "Junagadh",
+      "label": "Bamanwara"
+    },
+    {
+      "station_code": "212915070050001",
+      "district": "Junagadh",
+      "label": "Bantva"
+    },
+    {
+      "station_code": "211325070110001",
+      "district": "Junagadh",
+      "label": "Bhatsimroli"
+    },
+    {
+      "station_code": "212620070360001",
+      "district": "Junagadh",
+      "label": "Bilkha"
+    },
+    {
+      "station_code": "210545070130001",
+      "district": "Junagadh",
+      "label": "Budhecha"
+    },
+    {
+      "station_code": "210230070130001",
+      "district": "Junagadh",
+      "label": "Chorwad"
+    },
+    {
+      "station_code": "210315070164501",
+      "district": "Junagadh",
+      "label": "Gadu"
+    },
+    {
+      "station_code": "210850070163001",
+      "district": "Junagadh",
+      "label": "Galodar"
+    },
+    {
+      "station_code": "211100070091502",
+      "district": "Junagadh",
+      "label": "Goraj1"
+    },
+    {
+      "station_code": "213034070274401",
+      "district": "Junagadh",
+      "label": "Junagadh"
+    },
+    {
+      "station_code": "213100070273001",
+      "district": "Junagadh",
+      "label": "Junagadh1"
+    },
+    {
+      "station_code": "211000070160001",
+      "district": "Junagadh",
+      "label": "Juthal"
+    },
+    {
+      "station_code": "211455070033001",
+      "district": "Junagadh",
+      "label": "Kalej"
+    },
+    {
+      "station_code": "210150070143001",
+      "district": "Junagadh",
+      "label": "Kanek"
+    },
+    {
+      "station_code": "211600070123001",
+      "district": "Junagadh",
+      "label": "Kewarda"
+    },
+    {
+      "station_code": "210240070113001",
+      "district": "Junagadh",
+      "label": "Khambalia1"
+    },
+    {
+      "station_code": "212515070190001",
+      "district": "Junagadh",
+      "label": "Khokharda"
+    },
+    {
+      "station_code": "210350070102501",
+      "district": "Junagadh",
+      "label": "Khorada1"
+    },
+    {
+      "station_code": "212215070202001",
+      "district": "Junagadh",
+      "label": "Khoras ahir"
+    },
+    {
+      "station_code": "211000070040001",
+      "district": "Junagadh",
+      "label": "Lohej"
+    },
+    {
+      "station_code": "210835070054501",
+      "district": "Junagadh",
+      "label": "Maktupur1"
+    },
+    {
+      "station_code": "210730070063001",
+      "district": "Junagadh",
+      "label": "Mangrol"
+    },
+    {
+      "station_code": "210900070074501",
+      "district": "Junagadh",
+      "label": "Manketara"
+    },
+    {
+      "station_code": "211930070260001",
+      "district": "Junagadh",
+      "label": "Mendarda1"
+    },
+    {
+      "station_code": "213615070340901",
+      "district": "Junagadh",
+      "label": "Patla"
+    },
+    {
+      "station_code": "211800070420001",
+      "district": "Junagadh",
+      "label": "Prempara"
+    },
+    {
+      "station_code": "210700070131001",
+      "district": "Junagadh",
+      "label": "Sepa"
+    },
+    {
+      "station_code": "210800070145501",
+      "district": "Junagadh",
+      "label": "Seriakhan"
+    },
+    {
+      "station_code": "210615070091001",
+      "district": "Junagadh",
+      "label": "Shardagram"
+    },
+    {
+      "station_code": "211108070024701",
+      "district": "Junagadh",
+      "label": "Sil"
+    },
+    {
+      "station_code": "211325070032001",
+      "district": "Junagadh",
+      "label": "Sil bandar"
+    },
+    {
+      "station_code": "212020070445501",
+      "district": "Junagadh",
+      "label": "Visavadar"
+    },
+    {
+      "station_code": "235040070401001",
+      "district": "Kachchh",
+      "label": "Balasar"
+    },
+    {
+      "station_code": "225620069045801",
+      "district": "Kachchh",
+      "label": "Bambhdai"
+    },
+    {
+      "station_code": "225400069540001",
+      "district": "Kachchh",
+      "label": "Bhadreshwar"
+    },
+    {
+      "station_code": "231500069400002",
+      "district": "Kachchh",
+      "label": "Bhuj (Circuit House)"
+    },
+    {
+      "station_code": "234450070404501",
+      "district": "Kachchh",
+      "label": "Deshalpur rapar"
+    },
+    {
+      "station_code": "232410069194501",
+      "district": "Kachchh",
+      "label": "Devisar"
+    },
+    {
+      "station_code": "235300070130001",
+      "district": "Kachchh",
+      "label": "Dholavira"
+    },
+    {
+      "station_code": "230300069300001",
+      "district": "Kachchh",
+      "label": "Dunai"
+    },
+    {
+      "station_code": "232130069520001",
+      "district": "Kachchh",
+      "label": "Haboi"
+    },
+    {
+      "station_code": "232830070241501",
+      "district": "Kachchh",
+      "label": "Kakarwa"
+    },
+    {
+      "station_code": "232715070210001",
+      "district": "Kachchh",
+      "label": "Kharoi"
+    },
+    {
+      "station_code": "235020069435001",
+      "district": "Kachchh",
+      "label": "Khavada"
+    },
+    {
+      "station_code": "235040069435501",
+      "district": "Kachchh",
+      "label": "Khavda"
+    },
+    {
+      "station_code": "230230069113001",
+      "district": "Kachchh",
+      "label": "Kotadi"
+    },
+    {
+      "station_code": "230230069043001",
+      "district": "Kachchh",
+      "label": "Kotaya"
+    },
+    {
+      "station_code": "230943068544301",
+      "district": "Kachchh",
+      "label": "Kothara"
+    },
+    {
+      "station_code": "233204070262501",
+      "district": "Kachchh",
+      "label": "Kuda"
+    },
+    {
+      "station_code": "234923068463001",
+      "district": "Kachchh",
+      "label": "Lakhpat"
+    },
+    {
+      "station_code": "233040070390001",
+      "district": "Kachchh",
+      "label": "Lilpur"
+    },
+    {
+      "station_code": "232400069533001",
+      "district": "Kachchh",
+      "label": "Lodai"
+    },
+    {
+      "station_code": "225224069484201",
+      "district": "Kachchh",
+      "label": "Luni"
+    },
+    {
+      "station_code": "231355069415001",
+      "district": "Kachchh",
+      "label": "Madhapar"
+    },
+    {
+      "station_code": "225032069221501",
+      "district": "Kachchh",
+      "label": "Mandvi"
+    },
+    {
+      "station_code": "233200068570001",
+      "district": "Kachchh",
+      "label": "Mata no madh"
+    },
+    {
+      "station_code": "231230069073001",
+      "district": "Kachchh",
+      "label": "Mothala"
+    },
+    {
+      "station_code": "234530068403001",
+      "district": "Kachchh",
+      "label": "Moti cher"
+    },
+    {
+      "station_code": "224940069431501",
+      "district": "Kachchh",
+      "label": "Mundra"
+    },
+    {
+      "station_code": "231521068502401",
+      "district": "Kachchh",
+      "label": "Naliya"
+    },
+    {
+      "station_code": "231600068500001",
+      "district": "Kachchh",
+      "label": "Naliya (Bus S)"
+    },
+    {
+      "station_code": "232755069313001",
+      "district": "Kachchh",
+      "label": "Nirona"
+    },
+    {
+      "station_code": "233400070381502",
+      "district": "Kachchh",
+      "label": "Rapar2"
+    },
+    {
+      "station_code": "231800070303001",
+      "district": "Kachchh",
+      "label": "Samkhiari"
+    },
+    {
+      "station_code": "231017069381501",
+      "district": "Kachchh",
+      "label": "Sedat"
+    },
+    {
+      "station_code": "230200070031501",
+      "district": "Kachchh",
+      "label": "Shinaya"
+    },
+    {
+      "station_code": "231230069370001",
+      "district": "Kachchh",
+      "label": "Sukhpar"
+    },
+    {
+      "station_code": "231700068565001",
+      "district": "Kachchh",
+      "label": "Tera"
+    },
+    {
+      "station_code": "230600069013001",
+      "district": "Kachchh",
+      "label": "Vinjhan1"
+    },
+    {
+      "station_code": "224830073033001",
+      "district": "Kheda",
+      "label": "Alina"
+    },
+    {
+      "station_code": "224545073101001",
+      "district": "Kheda",
+      "label": "Dakor"
+    },
+    {
+      "station_code": "224315073113001",
+      "district": "Kheda",
+      "label": "Kalesar"
+    },
+    {
+      "station_code": "224700072563001",
+      "district": "Kheda",
+      "label": "Mahudha"
+    },
+    {
+      "station_code": "224235072400501",
+      "district": "Kheda",
+      "label": "Matar I"
+    },
+    {
+      "station_code": "224240072520001",
+      "district": "Kheda",
+      "label": "Nadiad Pz-I"
+    },
+    {
+      "station_code": "224230073121001",
+      "district": "Kheda",
+      "label": "Nes_Pz"
+    },
+    {
+      "station_code": "225910072525001",
+      "district": "Kheda",
+      "label": "Sarkhej _ I"
+    },
+    {
+      "station_code": "225910072525002",
+      "district": "Kheda",
+      "label": "Sarkhej _ II"
+    },
+    {
+      "station_code": "225910072525003",
+      "district": "Kheda",
+      "label": "Sarkhej _ Pz-III"
+    },
+    {
+      "station_code": "223430072373001",
+      "district": "Kheda",
+      "label": "Shekhupura"
+    },
+    {
+      "station_code": "224740073124001",
+      "district": "Kheda",
+      "label": "Thasra"
+    },
+    {
+      "station_code": "223940072451501",
+      "district": "Kheda",
+      "label": "Vaso"
+    },
+    {
+      "station_code": "230620073061501",
+      "district": "Kheda",
+      "label": "Vyas vasna"
+    },
+    {
+      "station_code": "233030072110001",
+      "district": "Mahesana",
+      "label": "Asjol"
+    },
+    {
+      "station_code": "234330072230001",
+      "district": "Mahesana",
+      "label": "Bhandupara"
+    },
+    {
+      "station_code": "231715072223001",
+      "district": "Mahesana",
+      "label": "Budasan"
+    },
+    {
+      "station_code": "231223072164701",
+      "district": "Mahesana",
+      "label": "Daran_Pz-I"
+    },
+    {
+      "station_code": "231223072164702",
+      "district": "Mahesana",
+      "label": "Daran_Pz-II"
+    },
+    {
+      "station_code": "231223072164703",
+      "district": "Mahesana",
+      "label": "Daran_Pz-III"
+    },
+    {
+      "station_code": "233245072064501",
+      "district": "Mahesana",
+      "label": "Dharpura"
+    },
+    {
+      "station_code": "235030072270001",
+      "district": "Mahesana",
+      "label": "Dosaj"
+    },
+    {
+      "station_code": "234925072320501",
+      "district": "Mahesana",
+      "label": "Jaska(Sy_8\")Pz_I"
+    },
+    {
+      "station_code": "232826072171601",
+      "district": "Mahesana",
+      "label": "Jotana Pzi"
+    },
+    {
+      "station_code": "230737072113501",
+      "district": "Mahesana",
+      "label": "Kalyanpur"
+    },
+    {
+      "station_code": "234815072291001",
+      "district": "Mahesana",
+      "label": "Karalli ( i)"
+    },
+    {
+      "station_code": "234815072291003",
+      "district": "Mahesana",
+      "label": "Karalli (iii)"
+    },
+    {
+      "station_code": "234815072291002",
+      "district": "Mahesana",
+      "label": "Karalli II"
+    },
+    {
+      "station_code": "235352072363801",
+      "district": "Mahesana",
+      "label": "Kheralu (deep)"
+    },
+    {
+      "station_code": "235352072363802",
+      "district": "Mahesana",
+      "label": "Kheralu(shallow"
+    },
+    {
+      "station_code": "235315072364501",
+      "district": "Mahesana",
+      "label": "Kheralu1"
+    },
+    {
+      "station_code": "233440072172001",
+      "district": "Mahesana",
+      "label": "Maguna"
+    },
+    {
+      "station_code": "233551072235501",
+      "district": "Mahesana",
+      "label": "Mehsana I"
+    },
+    {
+      "station_code": "233551072235502",
+      "district": "Mahesana",
+      "label": "Mehsana II"
+    },
+    {
+      "station_code": "233200072230001",
+      "district": "Mahesana",
+      "label": "Mewad"
+    },
+    {
+      "station_code": "234300072280006",
+      "district": "Mahesana",
+      "label": "Modhera  II"
+    },
+    {
+      "station_code": "234300072280007",
+      "district": "Mahesana",
+      "label": "Modhera iii"
+    },
+    {
+      "station_code": "233202072361501",
+      "district": "Mahesana",
+      "label": "Motipura_Pz_I"
+    },
+    {
+      "station_code": "233745072203001",
+      "district": "Mahesana",
+      "label": "Panchot"
+    },
+    {
+      "station_code": "235330072310001",
+      "district": "Mahesana",
+      "label": "Rampura1"
+    },
+    {
+      "station_code": "234800072210001",
+      "district": "Mahesana",
+      "label": "Sihi"
+    },
+    {
+      "station_code": "232323072182401",
+      "district": "Mahesana",
+      "label": "Suraj"
+    },
+    {
+      "station_code": "234530072273001",
+      "district": "Mahesana",
+      "label": "Tarabh"
+    },
+    {
+      "station_code": "234600072214501",
+      "district": "Mahesana",
+      "label": "Unawa"
+    },
+    {
+      "station_code": "231450072180001",
+      "district": "Mahesana",
+      "label": "Vidaj"
+    },
+    {
+      "station_code": "234200072320004",
+      "district": "Mahesana",
+      "label": "Visnagar  iv"
+    },
+    {
+      "station_code": "225730073201001",
+      "district": "Mahisagar",
+      "label": "Balasinor"
+    },
+    {
+      "station_code": "225700073193001",
+      "district": "Mahisagar",
+      "label": "Balasinor1"
+    },
+    {
+      "station_code": "231005073244001",
+      "district": "Mahisagar",
+      "label": "Bar"
+    },
+    {
+      "station_code": "231824073331801",
+      "district": "Mahisagar",
+      "label": "Bavaliya_Pz"
+    },
+    {
+      "station_code": "230500073214501",
+      "district": "Mahisagar",
+      "label": "Juna vasadra"
+    },
+    {
+      "station_code": "230110073311001",
+      "district": "Mahisagar",
+      "label": "Kothamba"
+    },
+    {
+      "station_code": "231215073360001",
+      "district": "Mahisagar",
+      "label": "Limbadia peti"
+    },
+    {
+      "station_code": "230745073363001",
+      "district": "Mahisagar",
+      "label": "Lunawada"
+    },
+    {
+      "station_code": "231350073441001",
+      "district": "Mahisagar",
+      "label": "Malekpur1"
+    },
+    {
+      "station_code": "231015073543001",
+      "district": "Mahisagar",
+      "label": "Santrampur"
+    },
+    {
+      "station_code": "231130073543001",
+      "district": "Mahisagar",
+      "label": "Santrampur1"
+    },
+    {
+      "station_code": "230709073281801",
+      "district": "Mahisagar",
+      "label": "Ucharpi Pz"
+    },
+    {
+      "station_code": "225600070483001",
+      "district": "Morbi",
+      "label": "Amar nagar"
+    },
+    {
+      "station_code": "224945070334501",
+      "district": "Morbi",
+      "label": "Amran1"
+    },
+    {
+      "station_code": "224920070324501",
+      "district": "Morbi",
+      "label": "Amran_Pz"
+    },
+    {
+      "station_code": "222630071050001",
+      "district": "Morbi",
+      "label": "Bhalgam"
+    },
+    {
+      "station_code": "223015070451501",
+      "district": "Morbi",
+      "label": "Chhatar"
+    },
+    {
+      "station_code": "224100070483001",
+      "district": "Morbi",
+      "label": "Hadmatia"
+    },
+    {
+      "station_code": "223930070440001",
+      "district": "Morbi",
+      "label": "Kalyanpur2"
+    },
+    {
+      "station_code": "230530070454501",
+      "district": "Morbi",
+      "label": "Malia"
+    },
+    {
+      "station_code": "225400070400001",
+      "district": "Morbi",
+      "label": "Modpar1"
+    },
+    {
+      "station_code": "224930070513001",
+      "district": "Morbi",
+      "label": "Morbi"
+    },
+    {
+      "station_code": "224900070503001",
+      "district": "Morbi",
+      "label": "Morvi"
+    },
+    {
+      "station_code": "225730070370001",
+      "district": "Morbi",
+      "label": "Mota dhansura"
+    },
+    {
+      "station_code": "223015070414501",
+      "district": "Morbi",
+      "label": "Neknam"
+    },
+    {
+      "station_code": "225130070570001",
+      "district": "Morbi",
+      "label": "Nichi mandal"
+    },
+    {
+      "station_code": "230023070422501",
+      "district": "Morbi",
+      "label": "Sarvad"
+    },
+    {
+      "station_code": "223300070533001",
+      "district": "Morbi",
+      "label": "Sindhavadar"
+    },
+    {
+      "station_code": "220152073392401",
+      "district": "Narmada",
+      "label": "Agar(Rep)_Pz"
+    },
+    {
+      "station_code": "213250073460001",
+      "district": "Narmada",
+      "label": "Amayar"
+    },
+    {
+      "station_code": "214754073224501",
+      "district": "Narmada",
+      "label": "Baman Phalia_Pz"
+    },
+    {
+      "station_code": "213115073384501",
+      "district": "Narmada",
+      "label": "Chikada"
+    },
+    {
+      "station_code": "215330073390001",
+      "district": "Narmada",
+      "label": "Garudeshwar"
+    },
+    {
+      "station_code": "215205073360001",
+      "district": "Narmada",
+      "label": "Hirapura"
+    },
+    {
+      "station_code": "213115073384502",
+      "district": "Narmada",
+      "label": "Kanbi pitha"
+    },
+    {
+      "station_code": "215258073420201",
+      "district": "Narmada",
+      "label": "Kewadia_Pz"
+    },
+    {
+      "station_code": "214400073283001",
+      "district": "Narmada",
+      "label": "Khota amba"
+    },
+    {
+      "station_code": "220240073372001",
+      "district": "Narmada",
+      "label": "Namaria"
+    },
+    {
+      "station_code": "214010073400001",
+      "district": "Narmada",
+      "label": "Nani singlot"
+    },
+    {
+      "station_code": "215230073300001",
+      "district": "Narmada",
+      "label": "Rajpipla"
+    },
+    {
+      "station_code": "215800073373001",
+      "district": "Narmada",
+      "label": "Rasulpura_Pz"
+    },
+    {
+      "station_code": "215030073280001",
+      "district": "Narmada",
+      "label": "Ringani"
+    },
+    {
+      "station_code": "205145072540001",
+      "district": "Navsari",
+      "label": "Abrama"
+    },
+    {
+      "station_code": "204952073200401",
+      "district": "Navsari",
+      "label": "Chadav"
+    },
+    {
+      "station_code": "205930072531001",
+      "district": "Navsari",
+      "label": "Chinam"
+    },
+    {
+      "station_code": "205330072483001",
+      "district": "Navsari",
+      "label": "Dandi"
+    },
+    {
+      "station_code": "204943073032701",
+      "district": "Navsari",
+      "label": "Duvada"
+    },
+    {
+      "station_code": "204420073024501",
+      "district": "Navsari",
+      "label": "Hond"
+    },
+    {
+      "station_code": "204330073090001",
+      "district": "Navsari",
+      "label": "Kaliyari"
+    },
+    {
+      "station_code": "204750073173001",
+      "district": "Navsari",
+      "label": "Kantasvel"
+    },
+    {
+      "station_code": "203800073054501",
+      "district": "Navsari",
+      "label": "Khergam"
+    },
+    {
+      "station_code": "204027073140001",
+      "district": "Navsari",
+      "label": "Manav Khadak"
+    },
+    {
+      "station_code": "204818073160001",
+      "district": "Navsari",
+      "label": "Moti Valzar"
+    },
+    {
+      "station_code": "205729072560601",
+      "district": "Navsari",
+      "label": "Navsari 1"
+    },
+    {
+      "station_code": "205000072503001",
+      "district": "Navsari",
+      "label": "Onjal"
+    },
+    {
+      "station_code": "210440072593001",
+      "district": "Navsari",
+      "label": "Palsana"
+    },
+    {
+      "station_code": "203857073100101",
+      "district": "Navsari",
+      "label": "Panikhadak"
+    },
+    {
+      "station_code": "204845073093001",
+      "district": "Navsari",
+      "label": "Rankuva"
+    },
+    {
+      "station_code": "204715072571501",
+      "district": "Navsari",
+      "label": "Sari_khurd"
+    },
+    {
+      "station_code": "210030072444501",
+      "district": "Navsari",
+      "label": "Ubhrat"
+    },
+    {
+      "station_code": "204552073214701",
+      "district": "Navsari",
+      "label": "Vansda"
+    },
+    {
+      "station_code": "224615073380001",
+      "district": "Panchmahal",
+      "label": "Godhra2"
+    },
+    {
+      "station_code": "222210073433001",
+      "district": "Panchmahal",
+      "label": "Jambughoda"
+    },
+    {
+      "station_code": "222915073332001",
+      "district": "Panchmahal",
+      "label": "Pavagadh"
+    },
+    {
+      "station_code": "224330073453001",
+      "district": "Panchmahal",
+      "label": "Ranipura"
+    },
+    {
+      "station_code": "225715073373001",
+      "district": "Panchmahal",
+      "label": "Shehra"
+    },
+    {
+      "station_code": "223245073314501",
+      "district": "Panchmahal",
+      "label": "Tarkanda"
+    },
+    {
+      "station_code": "223030073303001",
+      "district": "Panchmahal",
+      "label": "Timbi2"
+    },
+    {
+      "station_code": "224815073281501",
+      "district": "Panchmahal",
+      "label": "Tuwa"
+    },
+    {
+      "station_code": "224145073333001",
+      "district": "Panchmahal",
+      "label": "Vejalpur"
+    },
+    {
+      "station_code": "235500072060001",
+      "district": "Patan",
+      "label": "Bhutia vasna i"
+    },
+    {
+      "station_code": "235318072235503",
+      "district": "Patan",
+      "label": "Biliya(Temple)_Pz_I"
+    },
+    {
+      "station_code": "234150072041001",
+      "district": "Patan",
+      "label": "Dharmoda"
+    },
+    {
+      "station_code": "233945072164501",
+      "district": "Patan",
+      "label": "Dhinoj1"
+    },
+    {
+      "station_code": "233540071465001",
+      "district": "Patan",
+      "label": "Moti chander"
+    },
+    {
+      "station_code": "234600072151501",
+      "district": "Patan",
+      "label": "Sander"
+    },
+    {
+      "station_code": "233119071472701",
+      "district": "Patan",
+      "label": "Sankheshwar"
+    },
+    {
+      "station_code": "234645072094501",
+      "district": "Patan",
+      "label": "Shankhari"
+    },
+    {
+      "station_code": "214231069423901",
+      "district": "Porbandar",
+      "label": "Adityana"
+    },
+    {
+      "station_code": "215500069360002",
+      "district": "Porbandar",
+      "label": "Adwana2"
+    },
+    {
+      "station_code": "214612069351701",
+      "district": "Porbandar",
+      "label": "Babda"
+    },
+    {
+      "station_code": "214553069394001",
+      "district": "Porbandar",
+      "label": "Bakharla"
+    },
+    {
+      "station_code": "214835069243001",
+      "district": "Porbandar",
+      "label": "Bhavpura"
+    },
+    {
+      "station_code": "214237069362001",
+      "district": "Porbandar",
+      "label": "Degam"
+    },
+    {
+      "station_code": "214735069481001",
+      "district": "Porbandar",
+      "label": "Hanumangadh1"
+    },
+    {
+      "station_code": "212702069590001",
+      "district": "Porbandar",
+      "label": "Kadegi"
+    },
+    {
+      "station_code": "213852069530001",
+      "district": "Porbandar",
+      "label": "Kandorna"
+    },
+    {
+      "station_code": "214830069360501",
+      "district": "Porbandar",
+      "label": "Khambodar"
+    },
+    {
+      "station_code": "214159069365101",
+      "district": "Porbandar",
+      "label": "Kolikhada"
+    },
+    {
+      "station_code": "214100069330001",
+      "district": "Porbandar",
+      "label": "Kuchhadi"
+    },
+    {
+      "station_code": "213750070010001",
+      "district": "Porbandar",
+      "label": "Kutiyana1"
+    },
+    {
+      "station_code": "213720069595001",
+      "district": "Porbandar",
+      "label": "Kutiyana_Pz"
+    },
+    {
+      "station_code": "215000069232001",
+      "district": "Porbandar",
+      "label": "Miyani"
+    },
+    {
+      "station_code": "215309069360101",
+      "district": "Porbandar",
+      "label": "Mojiwana"
+    },
+    {
+      "station_code": "212645069473001",
+      "district": "Porbandar",
+      "label": "Navibandar"
+    },
+    {
+      "station_code": "213400069405001",
+      "district": "Porbandar",
+      "label": "Oddar"
+    },
+    {
+      "station_code": "214530069291502",
+      "district": "Porbandar",
+      "label": "Palkhada1"
+    },
+    {
+      "station_code": "211750069563001",
+      "district": "Porbandar",
+      "label": "Pata"
+    },
+    {
+      "station_code": "213842069383301",
+      "district": "Porbandar",
+      "label": "Porbandar"
+    },
+    {
+      "station_code": "213830069373001",
+      "district": "Porbandar",
+      "label": "Porbandar1"
+    },
+    {
+      "station_code": "214100069444503",
+      "district": "Porbandar",
+      "label": "Ranavav2"
+    },
+    {
+      "station_code": "214313069304301",
+      "district": "Porbandar",
+      "label": "Ratadi"
+    },
+    {
+      "station_code": "215649069410901",
+      "district": "Porbandar",
+      "label": "Simar"
+    },
+    {
+      "station_code": "213058069434301",
+      "district": "Porbandar",
+      "label": "Tukda"
+    },
+    {
+      "station_code": "214708069264701",
+      "district": "Porbandar",
+      "label": "Visavada Mul Dwarka"
+    },
+    {
+      "station_code": "221100071053001",
+      "district": "Rajkot",
+      "label": "Bhadla"
+    },
+    {
+      "station_code": "215500070445501",
+      "district": "Rajkot",
+      "label": "Chordi"
+    },
+    {
+      "station_code": "220530070440001",
+      "district": "Rajkot",
+      "label": "Dadia"
+    },
+    {
+      "station_code": "214445070170901",
+      "district": "Rajkot",
+      "label": "Dhoraji"
+    },
+    {
+      "station_code": "214030070104501",
+      "district": "Rajkot",
+      "label": "Ganod"
+    },
+    {
+      "station_code": "215800070523001",
+      "district": "Rajkot",
+      "label": "Gogavadar"
+    },
+    {
+      "station_code": "220530071030001",
+      "district": "Rajkot",
+      "label": "Halenda"
+    },
+    {
+      "station_code": "215350070293001",
+      "district": "Rajkot",
+      "label": "Jamkandorna"
+    },
+    {
+      "station_code": "215600070460001",
+      "district": "Rajkot",
+      "label": "Jamwali"
+    },
+    {
+      "station_code": "215330070290001",
+      "district": "Rajkot",
+      "label": "Jasapur"
+    },
+    {
+      "station_code": "220240071125001",
+      "district": "Rajkot",
+      "label": "Jasdan"
+    },
+    {
+      "station_code": "220330071131501",
+      "district": "Rajkot",
+      "label": "Jasdan2"
+    },
+    {
+      "station_code": "214522070371001",
+      "district": "Rajkot",
+      "label": "Jetpur"
+    },
+    {
+      "station_code": "214630070380001",
+      "district": "Rajkot",
+      "label": "Jetpur pithad."
+    },
+    {
+      "station_code": "220110070393701",
+      "district": "Rajkot",
+      "label": "Kalithad1"
+    },
+    {
+      "station_code": "222830070330001",
+      "district": "Rajkot",
+      "label": "Khamta"
+    },
+    {
+      "station_code": "220800071181501",
+      "district": "Rajkot",
+      "label": "Lalavadar"
+    },
+    {
+      "station_code": "220800070375501",
+      "district": "Rajkot",
+      "label": "Lodhika"
+    },
+    {
+      "station_code": "220830070383001",
+      "district": "Rajkot",
+      "label": "Lodhika1"
+    },
+    {
+      "station_code": "215954070593801",
+      "district": "Rajkot",
+      "label": "Mota Dadwa"
+    },
+    {
+      "station_code": "214405070300501",
+      "district": "Rajkot",
+      "label": "Motagundala"
+    },
+    {
+      "station_code": "222700070363001",
+      "district": "Rajkot",
+      "label": "Movaiya"
+    },
+    {
+      "station_code": "213840070154001",
+      "district": "Rajkot",
+      "label": "Patanvav"
+    },
+    {
+      "station_code": "221800070480001",
+      "district": "Rajkot",
+      "label": "Rajkot1"
+    },
+    {
+      "station_code": "222200070554501",
+      "district": "Rajkot",
+      "label": "Ranpur1"
+    },
+    {
+      "station_code": "220730070460001",
+      "district": "Rajkot",
+      "label": "Ribda"
+    },
+    {
+      "station_code": "222300070400001",
+      "district": "Rajkot",
+      "label": "Targhari"
+    },
+    {
+      "station_code": "215510070361501",
+      "district": "Rajkot",
+      "label": "Umrali"
+    },
+    {
+      "station_code": "221230071224501",
+      "district": "Rajkot",
+      "label": "Vinchhia"
+    },
+    {
+      "station_code": "220130071073001",
+      "district": "Rajkot",
+      "label": "Viranagar"
+    },
+    {
+      "station_code": "215100070414501",
+      "district": "Rajkot",
+      "label": "Virpur1"
+    },
+    {
+      "station_code": "232420072504401",
+      "district": "Sabarkantha",
+      "label": "Anwarpura Pz"
+    },
+    {
+      "station_code": "235910073123001",
+      "district": "Sabarkantha",
+      "label": "Atarsumba"
+    },
+    {
+      "station_code": "234445072584501",
+      "district": "Sabarkantha",
+      "label": "Bhadreshwar"
+    },
+    {
+      "station_code": "231434072562701",
+      "district": "Sabarkantha",
+      "label": "Boriya"
+    },
+    {
+      "station_code": "235555072512501",
+      "district": "Sabarkantha",
+      "label": "Chandap_Pz"
+    },
+    {
+      "station_code": "235400073071001",
+      "district": "Sabarkantha",
+      "label": "Choriwad"
+    },
+    {
+      "station_code": "233558072540901",
+      "district": "Sabarkantha",
+      "label": "Derol Pz-II"
+    },
+    {
+      "station_code": "234230072563001",
+      "district": "Sabarkantha",
+      "label": "Gadha"
+    },
+    {
+      "station_code": "232240073010001",
+      "district": "Sabarkantha",
+      "label": "Harsol1"
+    },
+    {
+      "station_code": "233630072581501",
+      "district": "Sabarkantha",
+      "label": "Himmatnagar_Pz"
+    },
+    {
+      "station_code": "235030073021501",
+      "district": "Sabarkantha",
+      "label": "Idar"
+    },
+    {
+      "station_code": "240210073024001",
+      "district": "Sabarkantha",
+      "label": "Khedbrahma_Pz"
+    },
+    {
+      "station_code": "240640073003001",
+      "district": "Sabarkantha",
+      "label": "Matoda"
+    },
+    {
+      "station_code": "242230073020001",
+      "district": "Sabarkantha",
+      "label": "Poshina2"
+    },
+    {
+      "station_code": "234010073102501",
+      "district": "Sabarkantha",
+      "label": "Punasan"
+    },
+    {
+      "station_code": "234915073070001",
+      "district": "Sabarkantha",
+      "label": "Revas"
+    },
+    {
+      "station_code": "240030073070001",
+      "district": "Sabarkantha",
+      "label": "Silwad"
+    },
+    {
+      "station_code": "240030073211501",
+      "district": "Sabarkantha",
+      "label": "Vijaynagar"
+    },
+    {
+      "station_code": "240025073200001",
+      "district": "Sabarkantha",
+      "label": "Vijaynagar_Pz"
+    },
+    {
+      "station_code": "235600073020001",
+      "district": "Sabarkantha",
+      "label": "Wadali"
+    },
+    {
+      "station_code": "210345073113001",
+      "district": "Surat",
+      "label": "Allu"
+    },
+    {
+      "station_code": "210655073060001",
+      "district": "Surat",
+      "label": "Bardoli"
+    },
+    {
+      "station_code": "212249073001501",
+      "district": "Surat",
+      "label": "Bhatkol"
+    },
+    {
+      "station_code": "212430073080001",
+      "district": "Surat",
+      "label": "Dungri"
+    },
+    {
+      "station_code": "212800072571002",
+      "district": "Surat",
+      "label": "Jhankhvav"
+    },
+    {
+      "station_code": "211920073073701",
+      "district": "Surat",
+      "label": "Kasal"
+    },
+    {
+      "station_code": "211730072554501",
+      "district": "Surat",
+      "label": "Kathor"
+    },
+    {
+      "station_code": "210115073084501",
+      "district": "Surat",
+      "label": "Mahuva2"
+    },
+    {
+      "station_code": "211515073174501",
+      "district": "Surat",
+      "label": "Mandvi2"
+    },
+    {
+      "station_code": "211013073040701",
+      "district": "Surat",
+      "label": "Mota"
+    },
+    {
+      "station_code": "211645073205901",
+      "district": "Surat",
+      "label": "Moti Sarkui"
+    },
+    {
+      "station_code": "211920072581501",
+      "district": "Surat",
+      "label": "Navi pardi"
+    },
+    {
+      "station_code": "211727073125201",
+      "district": "Surat",
+      "label": "Nogama"
+    },
+    {
+      "station_code": "212030072453001",
+      "district": "Surat",
+      "label": "Olpad2"
+    },
+    {
+      "station_code": "205525073140001",
+      "district": "Surat",
+      "label": "Puna"
+    },
+    {
+      "station_code": "205545073134501",
+      "district": "Surat",
+      "label": "Puna1"
+    },
+    {
+      "station_code": "210330073053001",
+      "district": "Surat",
+      "label": "Sarbhon"
+    },
+    {
+      "station_code": "210530072433001",
+      "district": "Surat",
+      "label": "Sultanabad"
+    },
+    {
+      "station_code": "210700073060001",
+      "district": "Surat",
+      "label": "Ten-bardoli"
+    },
+    {
+      "station_code": "212026073055201",
+      "district": "Surat",
+      "label": "Ushker"
+    },
+    {
+      "station_code": "205014073171601",
+      "district": "Surat",
+      "label": "Vaheval"
+    },
+    {
+      "station_code": "224837071422101",
+      "district": "Surendranagar",
+      "label": "Anindra"
+    },
+    {
+      "station_code": "230700071470001",
+      "district": "Surendranagar",
+      "label": "Bajana"
+    },
+    {
+      "station_code": "222500071023001",
+      "district": "Surendranagar",
+      "label": "Bamanbor"
+    },
+    {
+      "station_code": "222530071105401",
+      "district": "Surendranagar",
+      "label": "Chotila1"
+    },
+    {
+      "station_code": "224630071440001",
+      "district": "Surendranagar",
+      "label": "Dedadra"
+    },
+    {
+      "station_code": "232100071393001",
+      "district": "Surendranagar",
+      "label": "Jhinjhuwada"
+    },
+    {
+      "station_code": "230015071444501",
+      "district": "Surendranagar",
+      "label": "Kherwa"
+    },
+    {
+      "station_code": "225130071470001",
+      "district": "Surendranagar",
+      "label": "Lakhtar"
+    },
+    {
+      "station_code": "223420071483001",
+      "district": "Surendranagar",
+      "label": "Limbdi-Pz"
+    },
+    {
+      "station_code": "222515071063701",
+      "district": "Surendranagar",
+      "label": "Moti Moladi"
+    },
+    {
+      "station_code": "223900071280001",
+      "district": "Surendranagar",
+      "label": "Muli"
+    },
+    {
+      "station_code": "225507071514801",
+      "district": "Surendranagar",
+      "label": "Olak"
+    },
+    {
+      "station_code": "230336071440301",
+      "district": "Surendranagar",
+      "label": "Pipli"
+    },
+    {
+      "station_code": "225030071353001",
+      "district": "Surendranagar",
+      "label": "Rajsitapur"
+    },
+    {
+      "station_code": "224400071220001",
+      "district": "Surendranagar",
+      "label": "Sarla"
+    },
+    {
+      "station_code": "223200071290001",
+      "district": "Surendranagar",
+      "label": "Sayala"
+    },
+    {
+      "station_code": "224000071494501",
+      "district": "Surendranagar",
+      "label": "Shiyani"
+    },
+    {
+      "station_code": "222715071290601",
+      "district": "Surendranagar",
+      "label": "Sudamda"
+    },
+    {
+      "station_code": "224325071401501",
+      "district": "Surendranagar",
+      "label": "Surendranagar"
+    },
+    {
+      "station_code": "224300071363001",
+      "district": "Surendranagar",
+      "label": "Surendranagar2"
+    },
+    {
+      "station_code": "232030071440001",
+      "district": "Surendranagar",
+      "label": "Visawadi"
+    },
+    {
+      "station_code": "205700073210501",
+      "district": "Tapi",
+      "label": "Bedchit"
+    },
+    {
+      "station_code": "211015073331501",
+      "district": "Tapi",
+      "label": "Jesingpura[sg]"
+    },
+    {
+      "station_code": "210046073272901",
+      "district": "Tapi",
+      "label": "Karanjvel"
+    },
+    {
+      "station_code": "210231073192401",
+      "district": "Tapi",
+      "label": "Kelkui"
+    },
+    {
+      "station_code": "212850074120001",
+      "district": "Tapi",
+      "label": "Nizar"
+    },
+    {
+      "station_code": "212838074112601",
+      "district": "Tapi",
+      "label": "Nizar1"
+    },
+    {
+      "station_code": "211019073460901",
+      "district": "Tapi",
+      "label": "Uchchhal"
+    },
+    {
+      "station_code": "210300073160001",
+      "district": "Tapi",
+      "label": "Valod"
+    },
+    {
+      "station_code": "210630073234501",
+      "district": "Tapi",
+      "label": "Vyara1"
+    },
+    {
+      "station_code": "221340073290001",
+      "district": "Vadodara",
+      "label": "Amreshwar"
+    },
+    {
+      "station_code": "224000073190001",
+      "district": "Vadodara",
+      "label": "Chhaliyar"
+    },
+    {
+      "station_code": "221055072564501",
+      "district": "Vadodara",
+      "label": "Chitral Pz-I"
+    },
+    {
+      "station_code": "223015073170001",
+      "district": "Vadodara",
+      "label": "Juna samalya"
+    },
+    {
+      "station_code": "222515073251001",
+      "district": "Vadodara",
+      "label": "Karamasiya"
+    },
+    {
+      "station_code": "221630073263001",
+      "district": "Vadodara",
+      "label": "Patiyapura"
+    },
+    {
+      "station_code": "221655073052501",
+      "district": "Vadodara",
+      "label": "Raypura i"
+    },
+    {
+      "station_code": "221700073301001",
+      "district": "Vadodara",
+      "label": "Saidal"
+    },
+    {
+      "station_code": "222620073072001",
+      "district": "Vadodara",
+      "label": "Sankarda"
+    },
+    {
+      "station_code": "223220073103002",
+      "district": "Vadodara",
+      "label": "Sankheda"
+    },
+    {
+      "station_code": "220030073230002",
+      "district": "Vadodara",
+      "label": "Segwa chouki ii"
+    },
+    {
+      "station_code": "220030073230001",
+      "district": "Vadodara",
+      "label": "Segwa chowki I"
+    },
+    {
+      "station_code": "215445073203001",
+      "district": "Vadodara",
+      "label": "Sinor"
+    },
+    {
+      "station_code": "222900073121001",
+      "district": "Vadodara",
+      "label": "Tundav"
+    },
+    {
+      "station_code": "221817073161801",
+      "district": "Vadodara",
+      "label": "Vadodara I"
+    },
+    {
+      "station_code": "221817073161802",
+      "district": "Vadodara",
+      "label": "Vadodara Ii"
+    },
+    {
+      "station_code": "220934073244501",
+      "district": "Vadodara",
+      "label": "Vega"
+    },
+    {
+      "station_code": "224450073212001",
+      "district": "Vadodara",
+      "label": "Vejpur2"
+    },
+    {
+      "station_code": "203100073171501",
+      "district": "Valsad",
+      "label": "Awadha"
+    },
+    {
+      "station_code": "201942073193301",
+      "district": "Valsad",
+      "label": "Chavshala"
+    },
+    {
+      "station_code": "201530072530001",
+      "district": "Valsad",
+      "label": "Dahli (bhilad)"
+    },
+    {
+      "station_code": "203151073094501",
+      "district": "Valsad",
+      "label": "Dharampur 3"
+    },
+    {
+      "station_code": "203211073101401",
+      "district": "Valsad",
+      "label": "Dharampur1"
+    },
+    {
+      "station_code": "201847073223401",
+      "district": "Valsad",
+      "label": "Fali"
+    },
+    {
+      "station_code": "201930072503001",
+      "district": "Valsad",
+      "label": "Kanadu"
+    },
+    {
+      "station_code": "202145072583001",
+      "district": "Valsad",
+      "label": "Karwad"
+    },
+    {
+      "station_code": "202800073093001",
+      "district": "Valsad",
+      "label": "Lakadmal"
+    },
+    {
+      "station_code": "202450073071501",
+      "district": "Valsad",
+      "label": "Nanaponda"
+    },
+    {
+      "station_code": "203600072540001",
+      "district": "Valsad",
+      "label": "Tithal"
+    },
+    {
+      "station_code": "201300072503001",
+      "district": "Valsad",
+      "label": "Tumb"
+    },
+    {
+      "station_code": "202749072550501",
+      "district": "Valsad",
+      "label": "Udwada"
+    },
+    {
+      "station_code": "201130072450001",
+      "district": "Valsad",
+      "label": "Umargaon"
+    },
+    {
+      "station_code": "202249072541601",
+      "district": "Valsad",
+      "label": "Vapi Balitha"
+    }
+  ]
+}

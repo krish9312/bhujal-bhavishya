@@ -10,7 +10,7 @@ Open `tests/model.test.html` through the same Live Server address to run the bro
 
 ## Dashboard summaries and planning tools
 
-The “What the data says” summary and well-comparison table are calculated from `data/districts.json`, `data/wells_meta.json`, and `data/wells_annual.csv`. Well trend summaries use the observations from 2012 onward, or the station's first available year when that is later. The table marks strong deepening trends when the slope is above 0.5 metres per year and R2 is at least 0.3.
+The “What the data says” summary is calculated from `data/districts.json`, `data/wells_meta.json`, and `data/wells_annual.csv`. Well trend summaries use the observations from 2012 onward, or the station's first available year when that is later. District assessment stages and monitoring-station water-level readings are different measures: station readings are not a district average or extraction rate. Inferred station-to-district matches are marked unverified.
 
 The “What it would take” calculator shows two separate ways to reach the selected stage:
 
@@ -19,11 +19,11 @@ The “What it would take” calculator shows two separate ways to reach the sel
 
 The calculator expresses both values in hectare-metres and million cubic metres. These are simplified comparisons, not project designs; actual recharge and extraction projects depend on local conditions.
 
-The “How it works” section explains the assessment, monitoring-well trends, and limitations. A monitoring well represents only its station, and the scenario and critical depth are not official forecasts or thresholds.
+The “How it works” section explains the assessment, monitoring-well trends, and limitations. The well graph represents only its selected station. Its reference depth is a project-set comparison value, not an official or district-wide threshold; the trend extrapolation is not a forecast.
 
 ## Data
 
-`data/districts.json` contains the district rows shown in the dashboard, based on the CGWB / India-WRIS Groundwater Resource Assessment (INGRES) for 2023–2024. Each object contains:
+`data/districts.json` contains the district assessment rows shown in the dashboard. The `assessmentYear` field on each row identifies its period; use the source/year applicable to that row rather than assuming all values belong to one assessment year. Each object contains:
 
 - `district`: district name in English.
 - `name_gu`: district name in Gujarati.
@@ -51,7 +51,13 @@ The growth rate is a project-selected scenario, not an official figure or foreca
 
 ## Add a Monitoring Well
 
-Add the station to `STATIONS` in `scripts/extract_wells.py`, rerun the script using the source readings file configured there, and make sure the generated `wells_meta.json` and `wells_annual.csv` files are in `data/`. The dashboard matches wells to districts by the district name in the metadata. To mark a district match as verified, set `"verified": true` for that well in `data/wells_meta.json`.
+The dashboard lists stations from `data/station_districts.json` and lets users choose between stations assigned to a district. The current station lookup contains stations from `data/station_trends.csv` with at least eight spring-season annual points in 2012–2023, a recorded well depth above 1 metre, and coordinates inside a Gujarat district. District assignments inferred from coordinates are marked unverified. Add or correct station-to-district matches in `station_districts.json`, then run the extractor against the raw readings CSV:
+
+```powershell
+py scripts\extract_wells.py --input "C:\path\to\groundwater-level-collected-manually.csv"
+```
+
+The input CSV must contain station, reading type, date, value, and well metadata columns. The script processes it in chunks, keeps water-level readings for mapped stations, and writes annual median readings to `data/wells_annual.csv` plus station details to `data/wells_meta.json`. Use `--data-dir` and `--station-map` to choose different output or lookup paths. Install pandas with `py -m pip install pandas` if it is not already available. Verify inferred district matches before setting `"verified": true`. The aggregate “Rann and Kutch” row has no assessment values and is not assigned a monitoring well.
 
 ## Add a District
 
